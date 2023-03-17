@@ -1,0 +1,16 @@
+{
+    "name": "com.NCG.PixelWorlds.Editor",
+    "rootNamespace": "PixelWorlds",
+    "references": [
+        "GUID:fb28cc4f805cb1647b70d332f161e316"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
