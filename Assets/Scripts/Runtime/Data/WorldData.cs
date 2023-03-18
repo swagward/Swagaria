@@ -25,6 +25,17 @@ namespace PixelWorlds.Runtime.Data
                 _y = Convert.ToUInt16(y);
                 _z = Convert.ToUInt16(z);
             }
+
+            public static bool operator ==(TileCell a, TileClass b) => a.Tile == b;
+            public static bool operator !=(TileCell a, TileClass b) => a.Tile != b;
+            private bool Equals(TileCell other) => Equals(Tile, other.Tile);
+            public override int GetHashCode() => Tile != null ? Tile.GetHashCode() : 0;
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                return obj.GetType() == GetType() && Equals((TileCell)obj);
+            }
         }
 
         /// <summary>

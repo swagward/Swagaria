@@ -2,7 +2,7 @@
 
 namespace PixelWorlds.Runtime.World
 {
-    [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Items/Item")]
+    [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Settings")]
     public class TerrainSettings : ScriptableObject
     {
         [Header("Generation")] 
