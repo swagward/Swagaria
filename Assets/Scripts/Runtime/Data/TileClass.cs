@@ -3,11 +3,11 @@ using UnityEngine.Tilemaps;
 
 namespace PixelWorlds.Runtime.Data
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Tile")]
     public class TileClass : ItemClass
     {
-        [SerializeField] private TileBase tile;
-        [SerializeField] private TileLayer tileLayer;
+        public TileBase tile;
+        public TileLayer tileLayer;
         //[SerializeField] private Color mapPixel;
 
         public override void Use()

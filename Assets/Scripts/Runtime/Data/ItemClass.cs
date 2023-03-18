@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PixelWorlds.Runtime.Data
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Item")]
     public class ItemClass : ScriptableObject
     {
         [SerializeField] private string name;
@@ -16,9 +16,11 @@ namespace PixelWorlds.Runtime.Data
         }
         
         public virtual ItemClass GetItem() { return this; }
-        //public virtual TileClass GetTile() { return null; }
+        public virtual TileClass GetTile() { return null; }
         //public virtual ToolClass GetTool() { return null; }
         //public virtual ConsumableClass GetConsumable() { return null; }
         //public virtual WeaponClass GetWeapon() { return null; }
     }
+    
+    
 }
