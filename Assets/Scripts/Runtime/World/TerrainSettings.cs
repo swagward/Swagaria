@@ -14,6 +14,7 @@ namespace PixelWorlds.Runtime.World
         public float caveFrequency;
         public float caveOctaves;
         public float surfaceValue;
+        public float caveVisibility;
 
         [Header("Terrain Generation")] 
         public float terrainFrequency;

@@ -38,21 +38,24 @@ namespace PixelWorlds.Runtime.World
         }
 
         private void PlaceTile(TileClass tile, int x, int y)
-        {
+        {   //Constraints
             if (tile is null) return;
             if (x < 0 || x >= TerrainConfig.Settings.worldSize.x) return;
             if (y < 0 || y >= TerrainConfig.Settings.worldSize.y) return;
             if (WorldData.GetTile(x, y, (int)tile.tileLayer) is not null) return;
             
+            //Add tile to world and array then play tile sound if possible
             WorldData.SetTile(tile, x, y);
+            //tile.placeSound?.Play();
         }
         
         private void RemoveTile(int x, int y, int z)
-        {
+        {   //Constraints
             if (x < 0 || x >= TerrainConfig.Settings.worldSize.x) return;
             if (y < 0 || y >= TerrainConfig.Settings.worldSize.y) return;
             if (WorldData.GetTile(x, y, z) is null) return;
             
+            //Remove tile from world and array
             WorldData.SetTile(null, x, y, z);
         }
     }

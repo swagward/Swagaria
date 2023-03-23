@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b076279003483f83acced6b31551d4, type: 3}
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
-  worldSize: {x: 350, y: 250}
-  seed: 24556
+  worldSize: {x: 400, y: 250}
+  seed: -23613
   seedRange: 32676
   caveFrequency: 0.1
   caveOctaves: 2
-  surfaceValue: 0.25
-  terrainFrequency: 0.015
-  terrainOctaves: 6
-  dirtSpawnHeight: 35
-  heightMultiplier: 15
-  heightAddition: 30
+  surfaceValue: 0.5
+  caveVisibility: 0.5
+  terrainFrequency: 0.02
+  terrainOctaves: 4
+  dirtSpawnHeight: 40
+  heightMultiplier: 60
+  heightAddition: 140
   flowerChance: 0
   treeChance: 0
   minTreeHeight: 0

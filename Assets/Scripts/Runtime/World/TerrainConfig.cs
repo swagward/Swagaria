@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using PixelWorlds.Runtime.Data;
+using UnityRandom = UnityEngine.Random;
 
 namespace PixelWorlds.Runtime.World
 {
@@ -15,7 +17,7 @@ namespace PixelWorlds.Runtime.World
 
         private static int GetSeed() 
         {
-            return Random.Range(-Settings.seedRange, Settings.seedRange);
+            return UnityRandom.Range(-Settings.seedRange, Settings.seedRange);
         }
 
         public static TileClass GenerateTile(int x, int y)
@@ -28,16 +30,21 @@ namespace PixelWorlds.Runtime.World
             var freq = Settings.caveFrequency;
             for (var i = 0; i < Settings.caveOctaves; i++)
             {
+                // if(!(y < height - Convert.ToInt16(Settings.dirtSpawnHeight / UnityRandom.Range(2, 4)))) continue;
                 noiseValue += Mathf.PerlinNoise((x + Settings.seed) * freq, (y + Settings.seed) * freq);
                 freq *= 1.5f;
             }
 
+            var surfaceCaves = 0f;
+            if (y > height - Settings.dirtSpawnHeight)
+                surfaceCaves = Mathf.PerlinNoise(x * freq, y * freq);
+
             noiseValue /= Settings.caveOctaves;
-            if (noiseValue > Settings.surfaceValue) return null;
+            if (noiseValue > Settings.caveVisibility || surfaceCaves > Settings.surfaceValue) return null;
             
             //smth with ores eventually
             
-            if(y < height - Settings.dirtSpawnHeight - Random.Range(2 ,5)) return TileAtlas.Stone;
+            if(y < height - Settings.dirtSpawnHeight - UnityRandom.Range(2 ,5)) return TileAtlas.Stone;
             if(y < height - 1) return TileAtlas.Dirt;
             if (y <= height) return TileAtlas.Grass;
             return null;
