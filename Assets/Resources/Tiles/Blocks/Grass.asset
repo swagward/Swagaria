@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  name: Dirt
-  icon: {fileID: 1077328410, guid: b97f132f9d945694283ff6279c64cee6, type: 3}
+  name: Grass
+  icon: {fileID: 1890787023, guid: 957bcd825a9c88e4f8b2dd92b4f5fc3d, type: 3}
   canStack: 1
   removeOnUse: 1
-  tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
-  tileLayer: 2
+  tile: {fileID: 11400000, guid: bd0e53b9d7283aa44891045a3e7c3940, type: 2}
+  tileLayer: 1
+  breakSound: {fileID: 0}
+  placeSound: {fileID: 0}

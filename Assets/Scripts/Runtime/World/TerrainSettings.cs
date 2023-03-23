@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using PixelWorlds.Runtime.Player;
+using UnityEngine;
 
 namespace PixelWorlds.Runtime.World
 {
     [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Settings")]
     public class TerrainSettings : ScriptableObject
-    {
-        [Header("Generation")] 
+    { 
+        public PlayerController player;
+
+        public void InitPlayer()
+            => player = FindObjectOfType<PlayerController>();
+
+            [Header("Generation")] 
         public Vector2Int worldSize;
         public int seed;
         public int seedRange;

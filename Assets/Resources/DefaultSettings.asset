@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
   worldSize: {x: 400, y: 250}
-  seed: -23613
+  seed: -18614
   seedRange: 32676
-  caveFrequency: 0.1
+  caveFrequency: 0.08
   caveOctaves: 2
-  surfaceValue: 0.5
+  surfaceValue: 0.6
   caveVisibility: 0.5
   terrainFrequency: 0.02
   terrainOctaves: 4

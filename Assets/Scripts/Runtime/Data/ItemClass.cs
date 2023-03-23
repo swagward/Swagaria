@@ -5,7 +5,7 @@ namespace PixelWorlds.Runtime.Data
     [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Item")]
     public class ItemClass : ScriptableObject
     {
-        [SerializeField] private string name;
+        [SerializeField] private new string name;
         [SerializeField] private Sprite icon;
         [SerializeField] private bool canStack;
         [SerializeField] private bool removeOnUse;

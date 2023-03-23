@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  name: Dirt
+  name: Stone
   icon: {fileID: 1077328410, guid: b97f132f9d945694283ff6279c64cee6, type: 3}
   canStack: 1
   removeOnUse: 1
-  tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
-  tileLayer: 2
+  tile: {fileID: 11400000, guid: ec86f6897dddd364db059d21b50a7a2d, type: 2}
+  tileLayer: 1
+  breakSound: {fileID: 0}
+  placeSound: {fileID: 0}

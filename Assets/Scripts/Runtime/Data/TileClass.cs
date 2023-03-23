@@ -21,9 +21,9 @@ namespace PixelWorlds.Runtime.Data
 
     public enum TileLayer
     {
-        addon = 1,
-        ground = 2,
-        liquid = 3,
-        background = 4
+        addon,
+        ground,
+        liquid,
+        background
     }
 }

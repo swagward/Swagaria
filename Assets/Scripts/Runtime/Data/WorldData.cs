@@ -7,29 +7,29 @@ namespace PixelWorlds.Runtime.Data
 {
     public static class WorldData
     {
-        public static Tilemap[] Tilemaps;
+        public static Tilemap[] tilemaps;
         private static TileCell[,,] _worldData;
 
         public static void Init(Vector2Int worldSize)
-            => _worldData = new TileCell[worldSize.x, worldSize.y, Tilemaps.Length];
+            => _worldData = new TileCell[worldSize.x, worldSize.y, tilemaps.Length];
 
         public class TileCell
         {
-            public readonly TileClass Tile;
+            public readonly TileClass tile;
             private ushort _x, _y, _z;
 
             public TileCell([CanBeNull] TileClass tile, int x, int y, int z)
             {
-                Tile = tile;
+                this.tile = tile;
                 _x = Convert.ToUInt16(x);
                 _y = Convert.ToUInt16(y);
                 _z = Convert.ToUInt16(z);
             }
 
-            public static bool operator ==(TileCell a, TileClass b) => a.Tile == b;
-            public static bool operator !=(TileCell a, TileClass b) => a.Tile != b;
-            private bool Equals(TileCell other) => Equals(Tile, other.Tile);
-            public override int GetHashCode() => Tile != null ? Tile.GetHashCode() : 0;
+            public static bool operator ==(TileCell a, TileClass b) => a.tile == b;
+            public static bool operator !=(TileCell a, TileClass b) => a.tile != b;
+            private bool Equals(TileCell other) => Equals(tile, other.tile);
+            public override int GetHashCode() => tile != null ? tile.GetHashCode() : 0;
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
@@ -54,14 +54,14 @@ namespace PixelWorlds.Runtime.Data
             
             if (z is -1)
             {
-                if (tile is null) 
+                if (tile == null) 
                     throw new Exception("Z position required when setting tile to null");
                 z = (int)tile.tileLayer;
             }
             
             // Automatically add to tilemap and set the tile in specified tilemap
             _worldData[x, y, z] = new TileCell(tile, x, y, z);
-            Tilemaps[z].SetTile(new Vector3Int(x, y, 0), tile is null ? null : tile.tile);
+            tilemaps[z].SetTile(new Vector3Int(x, y, 0), tile == null ? null : tile.tile);
         }
         
         /// <summary>
@@ -79,12 +79,12 @@ namespace PixelWorlds.Runtime.Data
             // Returns the first tile it gets on the specific x/y coordinate
             if (z is -1)
             {
-                for (var i = 0; i < Tilemaps.Length; i++)
+                for (var i = 0; i < tilemaps.Length; i++)
                     if (_worldData[x, y, i] is not null)
-                        return _worldData[x, y, i].Tile;
+                        return _worldData[x, y, i].tile;
             }
     
-            return _worldData[x, y, z] is null ? null : _worldData[x, y, z].Tile;
+            return _worldData[x, y, z] is null ? null : _worldData[x, y, z].tile;
         }
     }
 }

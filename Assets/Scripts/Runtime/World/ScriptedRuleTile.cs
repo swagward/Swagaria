@@ -66,9 +66,9 @@ namespace PixelWorlds.Runtime.World
         private bool Check_Any(TileBase tile)
         {
             if (checkSelf)
-                return tile is not null;
+                return tile != null;
             else
-                return tile is not null && tile != this;
+                return tile != null && tile != this;
         }
 
         private bool AlwaysConnectToTile(TileBase tile)

@@ -17,4 +17,6 @@ MonoBehaviour:
   canStack: 1
   removeOnUse: 1
   tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
-  tileLayer: 2
+  tileLayer: 1
+  breakSound: {fileID: 0}
+  placeSound: {fileID: 0}
