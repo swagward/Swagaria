@@ -8,8 +8,8 @@ namespace PixelWorlds.Runtime.Data
     {
         public TileBase tile;
         public TileLayer tileLayer;
-        public AudioSource breakSound;
-        public AudioSource placeSound;
+        // public AudioSource breakSound;
+        // public AudioSource placeSound;
         //[SerializeField] private Color mapPixel;
 
         public override void Use()
@@ -19,11 +19,11 @@ namespace PixelWorlds.Runtime.Data
         }
     }
 
-    public enum TileLayer
+    public enum TileLayer : int
     {
-        addon,
-        ground,
-        liquid,
-        background
+        Addon = 0,
+        Ground = 1,
+        Liquid = 2,
+        Background = 3
     }
 }

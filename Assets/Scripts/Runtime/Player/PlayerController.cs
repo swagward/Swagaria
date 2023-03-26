@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using PixelWorlds.Runtime.Data;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
@@ -8,12 +9,15 @@ namespace PixelWorlds.Runtime.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public ItemClass item;
+        
+        
         [Header("Player Control")] 
         [SerializeField] private float speed;
         public Vector3Int mousePos { get; private set; }
         public int playerReach;
 
-        [Header("Jump/Ground Dectection")] 
+        [Header("Jump/Ground Detection")] 
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float jumpForce;
@@ -24,7 +28,6 @@ namespace PixelWorlds.Runtime.Player
         private bool _facingRight;
         private float _horizontal;
         private Camera _mainCam = Camera.main;
-        
         
         public void Spawn(int x, int y)
         {
@@ -39,24 +42,6 @@ namespace PixelWorlds.Runtime.Player
             if (GameManager.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
-            
-            
         }
-
-
-
-
-
-
-
-
-
-        }
-        
-        
-        
-        
-        
-        
     }
 }
