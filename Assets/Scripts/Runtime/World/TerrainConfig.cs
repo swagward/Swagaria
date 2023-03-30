@@ -31,8 +31,8 @@ namespace PixelWorlds.Runtime.World
                 return null;
                 
             //Spawn player
-            // if (x == settings.worldSize.x / 2)
-            //     settings.player.Spawn(x, (int)height);
+            if (x == Settings.worldSize.x / 2)
+                Settings.player.Spawn(x, (int)height);
             
             //Primary cave gen
             var noiseValue = 0f;
@@ -59,7 +59,7 @@ namespace PixelWorlds.Runtime.World
             
             //Basic rules regarding Grass, Dirt and Stone
             if(y < height - Settings.dirtSpawnHeight - UnityRandom.Range(2 ,5)) return TileAtlas.Stone;
-            if(y < height - 1 - UnityRandom.Range(0, 2)) return TileAtlas.Dirt;
+            if(y < height - 1) return TileAtlas.Dirt;
             if (y <= height) return TileAtlas.Grass;
             return null;
         }

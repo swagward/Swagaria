@@ -33,20 +33,20 @@ namespace PixelWorlds.Runtime.World
                 {
                     var tileToPlace = TerrainConfig.GenerateTile(x, y);
                     if (tileToPlace != null) 
-                        PlaceTile(tileToPlace, x, y);
+                        PlaceTile(tileToPlace, x, y, false);
 
                     // All nature stuff managed here
                     if (GetTile(x, y, 1) == TileAtlas.Grass)
                     {
-                        if (GetTile(x, y + 1, 1) is null)
+                        if (GetTile(x, y + 1, 0) is null)
                         {
-                            if (Random.Range(0, 100) > TerrainConfig.Settings.treeChance)
+                            if (Random.Range(0 ,100) > TerrainConfig.Settings.treeChance)
                                 PlaceTree(x, y + 1);
-                            else if (Random.Range(0 ,100) > TerrainConfig.Settings.flowerChance)
-                                PlaceTile(TileAtlas.Stone, x, y + 1);
+                            else if (Random.Range(0, 100) > TerrainConfig.Settings.flowerChance)
+                                PlaceTile(TileAtlas.Flower, x, y + 1, false);
                         }
 
-                        if (GetTile(x, y - 1, 1) is null)
+                        if (GetTile(x, y - 1, 0) is null)
                         {
                             var i = 0;
                             while (i < 5)
@@ -68,14 +68,14 @@ namespace PixelWorlds.Runtime.World
         private void PlaceTree(int x, int y)
         {   //Restraints
             if (x < 3 || x > TerrainConfig.Settings.worldSize.x - 3) return;
-            if (GetTile(x + 1, y, 1) is not null || GetTile(x - 1, y, 1) is not null) return;
-            if (GetTile(x + 2, y, 1) is not null || GetTile(x - 2, y, 1) is not null) return;
-            if (GetTile(x + 1, y - 1, 0) is not null || GetTile(x - 1, y - 1, 0) is not null) return;
+            if (GetTile(x + 1, y, 0) is not null || GetTile(x - 1, y, 0) is not null) return;
+            if (GetTile(x + 2, y, 0) is not null || GetTile(x - 2, y, 0) is not null) return;
+            if (GetTile(x + 1, y + 1, 0) is not null || GetTile(x - 1, y + 1, 0) is not null) return;
             
             var height = Random.Range(TerrainConfig.Settings.minTreeHeight, TerrainConfig.Settings.maxTreeHeight);
             for (var i = 0; i < height; i++)
             {
-                PlaceTile(TileAtlas.Stone, x, y + i);
+                PlaceTile(TileAtlas.OakTree, x, y + i, false);
 
                 if (i >= 1)
                 {
@@ -84,10 +84,12 @@ namespace PixelWorlds.Runtime.World
                     switch (branchChance)
                     {
                         case < 2:
-                            PlaceTile(TileAtlas.Dirt, x + 1, y + i - 1);
+                            if(GetTile(x + 1, y, 1) is null)
+                                PlaceTile(TileAtlas.OakBranch, x + 1, y + i - 1, false);
                             break;
                         case > 8:
-                            PlaceTile(TileAtlas.Dirt, x - 1, y + i - 1);
+                            if(GetTile(x - 1, y, 1) is null)
+                                PlaceTile(TileAtlas.OakBranch, x - 1, y + i - 1, false);
                             break;
                     }
                 }
@@ -98,19 +100,21 @@ namespace PixelWorlds.Runtime.World
         {
             var length = Random.Range(1, 7);
             var i = 0;
+
+            PlaceTile(TileAtlas.Grass, x, y + 1, true);
             while (i < length && GetTile(x, y - i, 1) is null)
             {
-                PlaceTile(TileAtlas.Vine, x, y - i);
+                PlaceTile(TileAtlas.Vine, x, y - i, false);
                 i++;
             }
         }
         
-        private void PlaceTile(TileClass tile, int x, int y)
+        private void PlaceTile(TileClass tile, int x, int y, bool overrideTile)
         {   //Constraints
             if (tile == null) return;
             if (x < 0 || x >= TerrainConfig.Settings.worldSize.x) return;
             if (y < 0 || y >= TerrainConfig.Settings.worldSize.y) return;
-            if (GetTile(x, y, (int)tile.tileLayer) != null) return;
+            if (GetTile(x, y, (int)tile.tileLayer) != null && overrideTile == false) return;
             
             //Add tile to world and array then play tile sound if possible
             SetTile(tile, x, y, (int)tile.tileLayer);
