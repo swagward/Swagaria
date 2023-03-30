@@ -22,17 +22,17 @@ namespace PixelWorlds.Runtime.World
             tilemaps = _tilemaps;
             WorldData.Init(TerrainConfig.Settings.worldSize);
 
-            GenerateTerrain(TerrainConfig.Settings.worldSize);
+            GenerateTerrain();
         }
 
-        private void GenerateTerrain(Vector2Int worldSize)
+        private void GenerateTerrain()
         {
-            for (var x = 0; x < worldSize.x; x++)
+            for (var x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
             {
-                for (var y = 0; y < worldSize.y; y++)
+                for (var y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
                 {
                     var tileToPlace = TerrainConfig.GenerateTile(x, y);
-                    if (tileToPlace != null) 
+                    if (tileToPlace is not null) 
                         PlaceTile(tileToPlace, x, y, false);
 
                     // All nature stuff managed here
@@ -85,11 +85,11 @@ namespace PixelWorlds.Runtime.World
                     {
                         case < 2:
                             if(GetTile(x + 1, y, 1) is null)
-                                PlaceTile(TileAtlas.OakBranch, x + 1, y + i - 1, false);
+                                PlaceTile(TileAtlas.OakBranch, x + 1, y + i, false);
                             break;
                         case > 8:
                             if(GetTile(x - 1, y, 1) is null)
-                                PlaceTile(TileAtlas.OakBranch, x - 1, y + i - 1, false);
+                                PlaceTile(TileAtlas.OakBranch, x - 1, y + i, false);
                             break;
                     }
                 }
