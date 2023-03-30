@@ -13,6 +13,7 @@ namespace PixelWorlds.Runtime.Data
         public static readonly TileClass Vine = Resources.Load<TileClass>("Tiles/Addons/Vine");
         public static readonly TileClass OakTree = Resources.Load<TileClass>("Tiles/Addons/OakTree");
         public static readonly TileClass OakBranch = Resources.Load<TileClass>("Tiles/Addons/OakBranch");
+        public static readonly TileClass Flower = Resources.Load<TileClass>("Tiles/Addons/Flower");
         
         
     }

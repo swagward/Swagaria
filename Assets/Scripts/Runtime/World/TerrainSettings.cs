@@ -1,5 +1,4 @@
-﻿using System;
-using PixelWorlds.Runtime.Player;
+﻿using PixelWorlds.Runtime.Player;
 using UnityEngine;
 
 namespace PixelWorlds.Runtime.World

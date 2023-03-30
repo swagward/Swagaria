@@ -40,10 +40,10 @@ namespace PixelWorlds.Runtime.World
                     {
                         if (GetTile(x, y + 1, 0) is null)
                         {
-                            if (Random.Range(0, 100) > TerrainConfig.Settings.treeChance)
+                            if (Random.Range(0 ,100) > TerrainConfig.Settings.treeChance)
                                 PlaceTree(x, y + 1);
-                            else if (Random.Range(0 ,100) > TerrainConfig.Settings.flowerChance)
-                                PlaceTile(TileAtlas.Stone, x, y + 1, false);
+                            else if (Random.Range(0, 100) > TerrainConfig.Settings.flowerChance)
+                                PlaceTile(TileAtlas.Flower, x, y + 1, false);
                         }
 
                         if (GetTile(x, y - 1, 0) is null)
@@ -70,7 +70,7 @@ namespace PixelWorlds.Runtime.World
             if (x < 3 || x > TerrainConfig.Settings.worldSize.x - 3) return;
             if (GetTile(x + 1, y, 0) is not null || GetTile(x - 1, y, 0) is not null) return;
             if (GetTile(x + 2, y, 0) is not null || GetTile(x - 2, y, 0) is not null) return;
-            if (GetTile(x + 1, y - 1, 0) is not null || GetTile(x - 1, y - 1, 0) is not null) return;
+            if (GetTile(x + 1, y + 1, 0) is not null || GetTile(x - 1, y + 1, 0) is not null) return;
             
             var height = Random.Range(TerrainConfig.Settings.minTreeHeight, TerrainConfig.Settings.maxTreeHeight);
             for (var i = 0; i < height; i++)
@@ -84,10 +84,12 @@ namespace PixelWorlds.Runtime.World
                     switch (branchChance)
                     {
                         case < 2:
-                            PlaceTile(TileAtlas.OakBranch, x + 1, y + i - 1, false);
+                            if(GetTile(x + 1, y, 1) is null)
+                                PlaceTile(TileAtlas.OakBranch, x + 1, y + i - 1, false);
                             break;
                         case > 8:
-                            PlaceTile(TileAtlas.OakBranch, x - 1, y + i - 1, false);
+                            if(GetTile(x - 1, y, 1) is null)
+                                PlaceTile(TileAtlas.OakBranch, x - 1, y + i - 1, false);
                             break;
                     }
                 }
