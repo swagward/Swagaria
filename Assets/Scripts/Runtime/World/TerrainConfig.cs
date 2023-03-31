@@ -55,7 +55,11 @@ namespace PixelWorlds.Runtime.World
             noiseValue /= Settings.caveOctaves;
             if (noiseValue > Settings.caveVisibility || surfaceCaves > Settings.surfaceValue) return null;
             
-            //smth with ores eventually
+            foreach(var ore in TerrainConfig.Settings.ores)
+            {
+                if (ore.oreMask[x, y])
+                    return ore.oreTile;
+            }
             
             //Basic rules regarding Grass, Dirt and Stone
             if(y < height - Settings.dirtSpawnHeight - UnityRandom.Range(2 ,5)) return TileAtlas.Stone;

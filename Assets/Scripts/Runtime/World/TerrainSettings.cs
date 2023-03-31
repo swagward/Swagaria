@@ -1,4 +1,5 @@
 ﻿using PixelWorlds.Runtime.Player;
+using PixelWorlds.Runtime.Data;
 using UnityEngine;
 
 namespace PixelWorlds.Runtime.World
@@ -35,7 +36,7 @@ namespace PixelWorlds.Runtime.World
         public int minTreeHeight;
         public int maxTreeHeight;
         
-        //[Header("Ores")]
-        //public OreClass[] ores;
+        [Header("Ores")]
+        public OreClass[] ores;
     }
 }

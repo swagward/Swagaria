@@ -22,6 +22,12 @@ namespace PixelWorlds.Runtime.World
             tilemaps = _tilemaps;
             WorldData.Init(TerrainConfig.Settings.worldSize);
 
+            foreach (var ore in TerrainConfig.Settings.ores)
+            {
+                ore.oreMask = new bool[TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y];
+                ore.GenerateOres();
+            }
+
             GenerateTerrain();
         }
 
