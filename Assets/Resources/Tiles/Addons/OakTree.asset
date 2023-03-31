@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   canStack: 0
   removeOnUse: 0
-  tile: {fileID: 11400000, guid: 704f071d9bf30b7449dc30c129bf049d, type: 2}
+  tile: {fileID: 11400000, guid: 6ed6405939df81a4bbcfb7f9fceba935, type: 2}
   tileLayer: 0
