@@ -1,12 +1,9 @@
-using System;
-using PixelWorlds.Runtime.Data;
 using UnityEngine;
 
 namespace PixelWorlds.Runtime.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public ItemClass item;
         [Header("Player Control")] 
         [SerializeField] private float speed;
         public Vector3Int mousePos;
@@ -43,12 +40,9 @@ namespace PixelWorlds.Runtime.Player
             var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
-
-            item = WorldData.GetTile(mousePos.x, mousePos.y, 1);
         }
 
         private void FixedUpdate()
             => _rb2.velocity = new Vector2(_horizontal * speed, _rb2.velocity.y);
-        
     }
 }

@@ -115,7 +115,7 @@ namespace PixelWorlds.Runtime.World
             }
         }
         
-        private void PlaceTile(TileClass tile, int x, int y, bool overrideTile)
+        public void PlaceTile(TileClass tile, int x, int y, bool overrideTile)
         {   //Constraints
             if (tile == null) return;
             if (x < 0 || x >= TerrainConfig.Settings.worldSize.x) return;
@@ -127,7 +127,7 @@ namespace PixelWorlds.Runtime.World
             //tile.placeSound?.Play();
         }
         
-        private void RemoveTile(int x, int y, int z)
+        public void RemoveTile(int x, int y, int z)
         {   //Constraints
             if (x < 0 || x >= TerrainConfig.Settings.worldSize.x) return;
             if (y < 0 || y >= TerrainConfig.Settings.worldSize.y) return;

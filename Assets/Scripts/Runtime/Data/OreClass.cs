@@ -19,9 +19,9 @@ namespace PixelWorlds.Runtime.Data
         /// </summary>
         public void GenerateOres()
         {
-            for (int x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
+            for (var x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
             {
-                for (int y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
+                for (var y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
                 {
                     var v = Mathf.PerlinNoise((x + TerrainConfig.Settings.seed * oreTile.name[0]) * spawnRarity, 
                         (y + TerrainConfig.Settings.seed * oreTile.name[0]) * spawnRarity);
