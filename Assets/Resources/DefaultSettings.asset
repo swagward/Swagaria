@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  worldSize: {x: 800, y: 400}
-  seed: 13670
+  worldSize: {x: 400, y: 250}
+  seed: -24639
   seedRange: 32676
   caveFrequency: 0.08
   caveOctaves: 2
