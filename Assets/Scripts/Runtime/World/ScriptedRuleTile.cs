@@ -67,8 +67,7 @@ namespace PixelWorlds.Runtime.World
         {
             if (checkSelf)
                 return tile != null;
-            else
-                return tile != null && tile != this;
+            return tile != null && tile != this;
         }
 
         private bool AlwaysConnectToTile(TileBase tile)

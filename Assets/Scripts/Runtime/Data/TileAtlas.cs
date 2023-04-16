@@ -15,6 +15,8 @@ namespace PixelWorlds.Runtime.Data
         public static readonly TileClass OakBranch = Resources.Load<TileClass>("Tiles/Addons/OakBranch");
         public static readonly TileClass Flower = Resources.Load<TileClass>("Tiles/Addons/Flower");
         
-        
+        //Backgrounds
+        public static readonly TileClass StoneWall = Resources.Load<TileClass>("Tiles/Walls/StoneBG");
+        public static readonly TileClass DirtWall = Resources.Load<TileClass>("Tiles/Walls/DirtBG");
     }
 }

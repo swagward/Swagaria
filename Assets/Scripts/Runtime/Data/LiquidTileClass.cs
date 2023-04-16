@@ -2,7 +2,7 @@
 
 namespace PixelWorlds.Runtime.Data
 {
-    [CreateAssetMenu(fileName = "newLiquid", menuName = "Pixel Worlds/Items/Tile/Liquid")]
+    [CreateAssetMenu(fileName = "newLiquid", menuName = "Pixel Worlds/Items/Tiles/Liquid", order = 1)]
     public class LiquidTileClass : TileClass
     {
         public float flowSpeed;

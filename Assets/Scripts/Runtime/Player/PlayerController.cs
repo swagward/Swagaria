@@ -6,7 +6,7 @@ namespace PixelWorlds.Runtime.Player
     {
         [Header("Player Control")] 
         [SerializeField] private float speed;
-        public Vector3Int mousePos;
+        public Vector2Int mousePos;
         public int playerReach;
 
         [Header("Jump/Ground Detection")] 
@@ -37,7 +37,7 @@ namespace PixelWorlds.Runtime.Player
             _horizontal = Input.GetAxisRaw("Horizontal");
 
             //Get tiles at specific mouse position
-            var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
+            var worldPos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
         }

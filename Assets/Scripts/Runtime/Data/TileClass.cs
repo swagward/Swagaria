@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace PixelWorlds.Runtime.Data
 {
-    [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Tile")]
+    [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Tiles/Tile", order = 0)]
     public class TileClass : ItemClass
     {
         public TileBase tile;

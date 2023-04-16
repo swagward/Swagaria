@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using PixelWorlds.Runtime.Data;
-using PixelWorlds.Runtime.Player;
 using UnityRandom = UnityEngine.Random;
 
 namespace PixelWorlds.Runtime.World
@@ -43,7 +41,7 @@ namespace PixelWorlds.Runtime.World
                 noiseValue += Mathf.PerlinNoise((x + Settings.seed) * caveFreq, (y + Settings.seed) * caveFreq);
                 caveFreq *= 1.5f;
             }
-            
+
             //Surface cave gen
             var surfaceCaves = 0f;
             var surfaceFreq = Settings.caveFrequency / 1.25f;
@@ -55,7 +53,7 @@ namespace PixelWorlds.Runtime.World
             noiseValue /= Settings.caveOctaves;
             if (noiseValue > Settings.caveVisibility || surfaceCaves > Settings.surfaceValue) return null;
             
-            foreach(var ore in TerrainConfig.Settings.ores)
+            foreach(var ore in Settings.ores)
             {
                 if (ore.oreMask[x, y])
                     return ore.oreTile;
@@ -68,7 +66,7 @@ namespace PixelWorlds.Runtime.World
             return null;
         }
 
-        private static float GetHeight(float x)
+        public static float GetHeight(float x)
         {
             var freq = Settings.terrainFrequency;
             var noiseHeight = 0f;
