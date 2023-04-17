@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6b076279003483f83acced6b31551d4, type: 3}
-  m_Name: DefaultSettings
+  m_Name: CollegeSettings
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  worldSize: {x: 400, y: 250}
-  seed: -13179
+  worldSize: {x: 100, y: 80}
+  seed: 21603
   seedRange: 32676
   caveFrequency: 0.08
-  caveOctaves: 2
+  caveOctaves: 1
   surfaceValue: 0.65
   caveVisibility: 0.5
   terrainFrequency: 0.02
   terrainOctaves: 4
-  dirtSpawnHeight: 40
-  heightMultiplier: 60
-  heightAddition: 140
+  dirtSpawnHeight: 15
+  heightMultiplier: 20
+  heightAddition: 60
   flowerChance: 70
   treeChance: 60
   minTreeHeight: 7

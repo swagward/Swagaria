@@ -10,7 +10,7 @@ namespace PixelWorlds.Runtime.World
 
         public static void Init()
         {
-            Settings = Resources.Load<TerrainSettings>("DefaultSettings");
+            Settings = Resources.Load<TerrainSettings>("CollegeSettings");
             Settings.seed = GetSeed();
             
             Settings.InitPlayer();

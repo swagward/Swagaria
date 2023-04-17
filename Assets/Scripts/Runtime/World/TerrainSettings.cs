@@ -10,9 +10,9 @@ namespace PixelWorlds.Runtime.World
         public PlayerController player;
 
         public void InitPlayer()
-            => player = FindObjectOfType<PlayerController>();
-
-            [Header("Generation")] 
+            => player = FindObjectOfType<PlayerController>(); 
+        
+        [Header("Generation")] 
         public Vector2Int worldSize;
         public int seed;
         public int seedRange;
