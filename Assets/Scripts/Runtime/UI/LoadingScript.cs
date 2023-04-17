@@ -31,5 +31,8 @@ namespace PixelWorlds.Runtime.UI
             }
             
         }
+
+        public void LoadInstantLevel(string scene)
+            => SceneManager.LoadScene(scene);
     }
 }
