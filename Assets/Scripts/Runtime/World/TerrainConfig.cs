@@ -10,7 +10,7 @@ namespace PixelWorlds.Runtime.World
 
         public static void Init()
         {
-            Settings = Resources.Load<TerrainSettings>("CollegeSettings");
+            Settings = Resources.Load<TerrainSettings>("DefaultSettings");
             Settings.seed = GetSeed();
             
             Settings.InitPlayer();
@@ -55,7 +55,7 @@ namespace PixelWorlds.Runtime.World
             
             foreach(var ore in Settings.ores)
             {
-                if (ore.oreMask[x, y])
+                if (ore.OreMask[x, y])
                     return ore.oreTile;
             }
             

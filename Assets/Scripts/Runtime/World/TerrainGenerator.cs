@@ -25,7 +25,7 @@ namespace PixelWorlds.Runtime.World
 
             foreach (var ore in Settings.ores)
             {
-                ore.oreMask = new bool[Settings.worldSize.x, Settings.worldSize.y];
+                ore.OreMask = new bool[Settings.worldSize.x, Settings.worldSize.y];
                 ore.GenerateOres();
             }
 
@@ -93,7 +93,7 @@ namespace PixelWorlds.Runtime.World
             {
                 PlaceTile(TileAtlas.OakTree, x, y + i, false);
 
-                if (i >= 1)
+                if (i >= 1 && i < height - 1)
                 {
                     var branchChance = Random.Range(0, 10);
                 

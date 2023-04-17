@@ -7,7 +7,7 @@ namespace PixelWorlds.Runtime.Data
     public class OreClass
     {
         public TileClass oreTile;
-        public bool[,] oreMask;
+        public bool[,] OreMask;
         [SerializeField, Range(0, 1)] private float spawnFrequency;
         [SerializeField] private float spawnRarity;
         [SerializeField] private int minSpawnHeight, maxSpawnHeight;
@@ -23,7 +23,7 @@ namespace PixelWorlds.Runtime.Data
                 {
                     var v = Mathf.PerlinNoise((x + TerrainConfig.Settings.seed * oreTile.name[0]) * spawnFrequency, 
                         (y + TerrainConfig.Settings.seed * oreTile.name[0]) * spawnFrequency);
-                    oreMask[x, y] = v <= spawnRarity && y <= maxSpawnHeight && y >= minSpawnHeight;
+                    OreMask[x, y] = v <= spawnRarity && y <= maxSpawnHeight && y >= minSpawnHeight;
                 }
             }
         }

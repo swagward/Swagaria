@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
-  m_Name: IronOre
+  m_Name: GoldOre
   m_EditorClassIdentifier: 
-  name: Iron Ore
-  icon: {fileID: 1792036783, guid: f247a270a28c3184c93eb40f86f7e6fb, type: 3}
+  name: GoldOre
+  icon: {fileID: 0}
   canStack: 1
   removeOnUse: 1
-  tile: {fileID: 11400000, guid: f7ca4dbe71810c540b51d24ba0bd69d7, type: 2}
+  tile: {fileID: 11400000, guid: 5471959a8fc7c644791cc8391835b306, type: 2}
   tileLayer: 1

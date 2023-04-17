@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   worldSize: {x: 400, y: 250}
-  seed: -13179
+  seed: 4050
   seedRange: 32676
   caveFrequency: 0.08
   caveOctaves: 2
@@ -32,11 +32,21 @@ MonoBehaviour:
   ores:
   - oreTile: {fileID: 11400000, guid: 7d18629f756af4a4fb15f5ffdd5cf486, type: 2}
     spawnFrequency: 0.08
-    spawnRarity: 0.1
+    spawnRarity: 0.13
     minSpawnHeight: 1
     maxSpawnHeight: 250
   - oreTile: {fileID: 11400000, guid: 1b4c9170cb444bf418668a376bb64347, type: 2}
-    spawnFrequency: 0.08
+    spawnFrequency: 0.06
     spawnRarity: 0.1
     minSpawnHeight: 1
     maxSpawnHeight: 200
+  - oreTile: {fileID: 11400000, guid: f4ce62e75d48a954bbb7b4ae18ebfdca, type: 2}
+    spawnFrequency: 0.055
+    spawnRarity: 0.07
+    minSpawnHeight: 1
+    maxSpawnHeight: 150
+  - oreTile: {fileID: 11400000, guid: 83b8b595907a45d419b777e736adcaac, type: 2}
+    spawnFrequency: 0.08
+    spawnRarity: 0.05
+    minSpawnHeight: 1
+    maxSpawnHeight: 100
