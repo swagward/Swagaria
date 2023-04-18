@@ -86,7 +86,7 @@ MonoBehaviour:
     m_NeighborPositions:
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
-  checkSelf: 0
+  checkSelf: 1
   <AlwaysConnect>k__BackingField:
   - {fileID: 11400000, guid: 6ed6405939df81a4bbcfb7f9fceba935, type: 2}
   <SometimesConnect>k__BackingField: []

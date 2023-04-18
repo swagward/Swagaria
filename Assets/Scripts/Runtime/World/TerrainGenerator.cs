@@ -42,14 +42,13 @@ namespace PixelWorlds.Runtime.World
                     var tileToPlace = GenerateTile(x, y);
                     if (tileToPlace is not null) 
                         PlaceTile(tileToPlace, x, y, false);
-                    // else
-                    // {
-                    //     Debug.Log($"tile at {x}, {y} is null");
-                    //     if (y < height - Settings.dirtSpawnHeight - Random.Range(2, 5))
-                    //         PlaceTile(TileAtlas.StoneWall, x, y, false);
-                    //     if (y < height - 2)
-                    //         PlaceTile(TileAtlas.DirtWall, x, y, false);
-                    // }
+                    else
+                    {
+                        if (y < height - Settings.dirtSpawnHeight - Random.Range(2, 5))
+                            PlaceTile(TileAtlas.StoneWall, x, y, false);
+                        if (y < height - 2)
+                            PlaceTile(TileAtlas.DirtWall, x, y, false);
+                    }
 
                     // All nature stuff managed here
                     if (GetTile(x, y, 1) == TileAtlas.Grass)

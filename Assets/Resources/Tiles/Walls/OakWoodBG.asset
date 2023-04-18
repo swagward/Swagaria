@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
-  m_Name: DirtBG
+  m_Name: OakWoodBG
   m_EditorClassIdentifier: 
-  name: Dirt Background
+  name: Stone Background
   icon: {fileID: 0}
   canStack: 1
   removeOnUse: 1
-  tile: {fileID: 11400000, guid: a2e8926056c70034183a01f3ae381c1b, type: 2}
+  tile: {fileID: 11400000, guid: 7f5f54fe37f5fd849ac006cd961d629b, type: 2}
   tileLayer: 3
