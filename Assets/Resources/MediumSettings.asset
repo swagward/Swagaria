@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MediumSettings
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  worldSize: {x: 250, y: 180}
+  worldSize: {x: 250, y: 250}
   seed: -23662
   seedRange: 32676
   caveFrequency: 0.08
@@ -22,9 +22,9 @@ MonoBehaviour:
   caveVisibility: 0.5
   terrainFrequency: 0.02
   terrainOctaves: 4
-  dirtSpawnHeight: 35
-  heightMultiplier: 35
-  heightAddition: 80
+  dirtSpawnHeight: 40
+  heightMultiplier: 60
+  heightAddition: 140
   flowerChance: 70
   treeChance: 60
   minTreeHeight: 7
@@ -49,4 +49,14 @@ MonoBehaviour:
     spawnFrequency: 0.08
     spawnRarity: 0.05
     minSpawnHeight: 1
-    maxSpawnHeight: 100
+    maxSpawnHeight: 85
+  - oreTile: {fileID: 11400000, guid: 7530d3b4c8e660c4b8d5966c5126f5f4, type: 2}
+    spawnFrequency: 0.1
+    spawnRarity: 0.18
+    minSpawnHeight: 145
+    maxSpawnHeight: 180
+  - oreTile: {fileID: 11400000, guid: 9973d7a450515fc4a8fdbf39eb712239, type: 2}
+    spawnFrequency: 0.09
+    spawnRarity: 0.25
+    minSpawnHeight: 70
+    maxSpawnHeight: 150

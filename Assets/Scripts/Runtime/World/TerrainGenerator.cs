@@ -44,7 +44,7 @@ namespace PixelWorlds.Runtime.World
                     var tileToPlace = GenerateTile(x, y);
                     PlaceTile(tileToPlace, x, y, false);
 
-                    if (tileToPlace is null or OreTileClass)
+                    if (tileToPlace is null or OreTileClass or LiquidTileClass)
                     {
                         if (y < height - Settings.dirtSpawnHeight - Random.Range(2, 5))  
                                 PlaceTile(TileAtlas.StoneWall, x, y, false);
