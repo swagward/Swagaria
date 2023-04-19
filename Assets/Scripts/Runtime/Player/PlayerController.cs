@@ -32,7 +32,7 @@ namespace PixelWorlds.Runtime.Player
 
         private void Update()
         {
-            if (GameManager.IsPaused) return;
+            if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
 

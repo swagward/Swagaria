@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0969f515a84dc381e0db1c688df781, type: 3}
-  m_Name: IronOre
+  m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
+  m_Name: StoneBricks
   m_EditorClassIdentifier: 
-  name: Iron Ore
-  icon: {fileID: 1792036783, guid: f247a270a28c3184c93eb40f86f7e6fb, type: 3}
-  canStack: 1
-  removeOnUse: 1
-  tile: {fileID: 11400000, guid: f7ca4dbe71810c540b51d24ba0bd69d7, type: 2}
+  name: 
+  icon: {fileID: 0}
+  canStack: 0
+  removeOnUse: 0
+  tile: {fileID: 11400000, guid: 0059fe4981ae8fb48af46623d55a5028, type: 2}
   tileLayer: 1

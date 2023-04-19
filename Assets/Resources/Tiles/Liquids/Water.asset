@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0969f515a84dc381e0db1c688df781, type: 3}
-  m_Name: GoldOre
+  m_Script: {fileID: 11500000, guid: 0210602c8d3e4e4a8777c89cb8b40688, type: 3}
+  m_Name: Water
   m_EditorClassIdentifier: 
-  name: GoldOre
+  name: Water
   icon: {fileID: 0}
-  canStack: 1
-  removeOnUse: 1
-  tile: {fileID: 11400000, guid: 5471959a8fc7c644791cc8391835b306, type: 2}
-  tileLayer: 1
+  canStack: 0
+  removeOnUse: 0
+  tile: {fileID: 11400000, guid: 763f79ecd2c39914e9e6d2bc3c681674, type: 2}
+  tileLayer: 2
+  flowSpeed: 0.1

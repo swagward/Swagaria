@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b0969f515a84dc381e0db1c688df781, type: 3}
   m_Name: CopperOre
   m_EditorClassIdentifier: 
   name: Copper Ore

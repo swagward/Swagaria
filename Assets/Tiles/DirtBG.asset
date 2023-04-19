@@ -256,7 +256,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 8
     m_Sprites:
-    - {fileID: 9636848, guid: 27c5f4c96c8656e498492373b591b7ac, type: 3}
+    - {fileID: -439102670, guid: f44077ec05162a645bc6383b21aecd30, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -275,6 +275,7 @@ MonoBehaviour:
   <AlwaysConnect>k__BackingField:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: 7f5f54fe37f5fd849ac006cd961d629b, type: 2}
+  - {fileID: 11400000, guid: 96909b26e9dc2454a904b30c409eae30, type: 2}
   <SometimesConnect>k__BackingField: []
   <RareStates>k__BackingField: []
   <NeverConnect>k__BackingField:

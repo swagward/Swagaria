@@ -8,6 +8,8 @@ namespace PixelWorlds.Runtime.Data
         public static readonly TileClass Grass = Resources.Load<TileClass>("Tiles/Blocks/Grass");
         public static readonly TileClass Dirt = Resources.Load<TileClass>("Tiles/Blocks/Dirt");
         public static readonly TileClass Stone = Resources.Load<TileClass>("Tiles/Blocks/Stone");
+        public static readonly TileClass OakWood = Resources.Load<TileClass>("Tiles/Blocks/OakWood");
+        public static readonly TileClass StoneBricks = Resources.Load<TileClass>("Tiles/Blocks/StoneBricks");
 
         //Addons
         public static readonly TileClass Vine = Resources.Load<TileClass>("Tiles/Addons/Vine");
@@ -18,5 +20,12 @@ namespace PixelWorlds.Runtime.Data
         //Backgrounds
         public static readonly TileClass StoneWall = Resources.Load<TileClass>("Tiles/Walls/StoneBG");
         public static readonly TileClass DirtWall = Resources.Load<TileClass>("Tiles/Walls/DirtBG");
+        public static readonly TileClass OakWoodWall = Resources.Load<TileClass>("Tiles/Walls/OakWoodBG");
+        
+        //Liquids
+        public static readonly LiquidTileClass Water = Resources.Load<LiquidTileClass>("Tiles/Liquids/Water");
+        public static readonly LiquidTileClass Lava = Resources.Load<LiquidTileClass>("Tiles/Liquids/Lava");
+        public static readonly LiquidTileClass Honey = Resources.Load<LiquidTileClass>("Tiles/Liquids/Honey");
+        public static readonly LiquidTileClass Shimmer = Resources.Load<LiquidTileClass>("Tiles/Liquids/Shimmer"); //cum
     }
 }

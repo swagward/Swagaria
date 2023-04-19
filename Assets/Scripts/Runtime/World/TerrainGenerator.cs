@@ -1,6 +1,8 @@
-using PixelWorlds.Runtime.Data;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using PixelWorlds.Runtime.Data;
 using static PixelWorlds.Runtime.Data.WorldData;
 using static PixelWorlds.Runtime.World.TerrainConfig;
 
@@ -40,14 +42,14 @@ namespace PixelWorlds.Runtime.World
                 for (var y = 0; y < height; y++)
                 {
                     var tileToPlace = GenerateTile(x, y);
-                    if (tileToPlace is not null) 
-                        PlaceTile(tileToPlace, x, y, false);
-                    else
+                    PlaceTile(tileToPlace, x, y, false);
+
+                    if (tileToPlace is null or OreTileClass)
                     {
-                        if (y < height - Settings.dirtSpawnHeight - Random.Range(2, 5))
-                            PlaceTile(TileAtlas.StoneWall, x, y, false);
-                        if (y < height - 2)
-                            PlaceTile(TileAtlas.DirtWall, x, y, false);
+                        if (y < height - Settings.dirtSpawnHeight - Random.Range(2, 5))  
+                                PlaceTile(TileAtlas.StoneWall, x, y, false);
+                        else if (y < height - 2)
+                                PlaceTile(TileAtlas.DirtWall, x, y, false);
                     }
 
                     // All nature stuff managed here
@@ -81,8 +83,8 @@ namespace PixelWorlds.Runtime.World
         }
 
         private void PlaceTree(int x, int y)
-        {   //Restraints
-            if (x < 3 || x > Settings.worldSize.x - 3) return;
+        {   //Restraints to keep trees in the world and keep a distance between trees (not always perfect but no need to fix)
+            if (x < 2 || x > Settings.worldSize.x - 2) return;
             if (GetTile(x + 1, y, 0) is not null || GetTile(x - 1, y, 0) is not null) return;
             if (GetTile(x + 2, y, 0) is not null || GetTile(x - 2, y, 0) is not null) return;
             if (GetTile(x + 1, y + 1, 0) is not null || GetTile(x - 1, y + 1, 0) is not null) return;
@@ -92,6 +94,7 @@ namespace PixelWorlds.Runtime.World
             {
                 PlaceTile(TileAtlas.OakTree, x, y + i, false);
 
+                //Generate branches without messing up surrounding tree structures
                 if (i >= 1 && i < height - 1)
                 {
                     var branchChance = Random.Range(0, 10);
@@ -99,11 +102,11 @@ namespace PixelWorlds.Runtime.World
                     switch (branchChance)
                     {
                         case < 2:
-                            if(GetTile(x + 1, y, 1) is null)
+                            if(GetTile(x + 1, y, 1) is null || GetTile(x + 1, y, 0) is null)
                                 PlaceTile(TileAtlas.OakBranch, x + 1, y + i, false);
                             break;
                         case > 8:
-                            if(GetTile(x - 1, y, 1) is null)
+                            if(GetTile(x - 1, y, 1) is null || GetTile(x - 1, y, 0) is null)
                                 PlaceTile(TileAtlas.OakBranch, x - 1, y + i, false);
                             break;
                     }
@@ -134,6 +137,12 @@ namespace PixelWorlds.Runtime.World
             //Add tile to world and array then play tile sound if possible
             SetTile(tile, x, y, (int)tile.tileLayer);
             //tile.placeSound?.Play();
+
+            if (tile is LiquidTileClass liquidTile)
+            {
+                var newLiquidTile = new LiquidTile(x, y, this, liquidTile);
+                StartCoroutine(newLiquidTile.GenerateLiquids());
+            }
         }
         
         public void RemoveTile(int x, int y, int z)
@@ -145,5 +154,19 @@ namespace PixelWorlds.Runtime.World
             //Remove tile from world and array
             SetTile(null, x, y, z);
         }
+
+        // private bool CheckForTiles([CanBeNull] TileClass tile, int x, int y, int radius, TileLayer layer)
+        // {
+        //     for (var ix = 0; ix < radius; ix++)
+        //     {
+        //         for (var iy = 0; iy < radius; iy++)
+        //         {
+        //             if (GetTile(x - ix, y - iy, (int)layer) == tile) return true;
+        //             if (GetTile(x + ix, y + iy, (int)layer) == tile) return true;
+        //         }
+        //     }
+        //
+        //     return false;
+        // }
     }
 }

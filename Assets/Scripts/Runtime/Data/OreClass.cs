@@ -26,6 +26,6 @@ namespace PixelWorlds.Runtime.Data
                     OreMask[x, y] = v <= spawnRarity && y <= maxSpawnHeight && y >= minSpawnHeight;
                 }
             }
-        }
+        }                    
     }
 }

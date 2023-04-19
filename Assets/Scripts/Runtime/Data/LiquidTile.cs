@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using UnityEngine;
 using PixelWorlds.Runtime.World;
+using static PixelWorlds.Runtime.Data.WorldData;
+using static PixelWorlds.Runtime.World.TerrainConfig;
 
 namespace PixelWorlds.Runtime.Data
 {
@@ -17,22 +20,30 @@ namespace PixelWorlds.Runtime.Data
             _liquidData = liquidData;
         }
 
-        // public IEnumerator GenerateLiquids()
-        // {
-        //     // while (true)
-        //     // {
-        //     //     yield return new WaitForSeconds(_liquidData.flowSpeed);
-        //     //     
-        //     //     //on ground
-        //     //     if(_y > 0 && WorldData.GetTile(_x, _y - 1, 1) is null)
-        //     //         _terrain.PlaceTile(_liquidData, _x, _y - 1, false);
-        //     //         
-        //     //     //to left
-        //     //     if(_x > 0 && _y > 0
-        //     //               && WorldData.GetTile())
-        //     //         
-        //     //     //to right
-        //     // }
-        // }
+        public IEnumerator GenerateLiquids()
+        {
+            while (true)
+            {
+                var offset = Random.Range(_liquidData.flowSpeed, _liquidData.flowSpeed / 2);
+                yield return new WaitForSeconds(_liquidData.flowSpeed + offset);
+                
+                //Check if tile is above 0 and the tile below is empty and on the ground tilemap.
+                //If true place liquid tile below
+                if(_y > 0 && GetTile(_x, _y - 1, 1) is null)
+                    _terrain.PlaceTile(_liquidData, _x, _y - 1, false);
+                    
+                //Check if tile to the left is in the world space and empty
+                //And make sure current tile is grounded
+                //If true place liquid tile to the left
+                if(_x > 0 && _y > 0 && GetTile(_x - 1, _y, 1) is null && GetTile(_x, _y - 1, 1) is not null)
+                    _terrain.PlaceTile(_liquidData, _x - 1, _y, false);
+                
+                //Check if tile to the right is in world space and empty
+                //Make sure current tile is grounded
+                //Place tile to right
+                if(_x < Settings.worldSize.x && _y > 0 && GetTile(_x + 1, _y, 1) is null && GetTile(_x, _y - 1, 1 ) is not null)
+                    _terrain.PlaceTile(_liquidData, _x + 1, _y, false);
+            }
+        }
     }
 }
