@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,21 +11,24 @@ namespace PixelWorlds.Runtime.Player
         /// https://www.youtube.com/watch?v=Uw6XcLImDVk
         /// </summary>
         
-        public SpriteRenderer bodyPart;
+        public List<SpriteRenderer> bodyParts;
         public Slider red;
         public Slider green;
         public Slider blue;
 
         public void OnEdit()
         {
-            var colour = bodyPart.material.color;
+            foreach (var part in bodyParts)
+            {
+                var colour = part.material.color;
 
-            colour.r = red.value;
-            colour.g = green.value;
-            colour.b = blue.value;
+                colour.r = red.value;
+                colour.g = green.value;
+                colour.b = blue.value;
 
-            bodyPart.material.color = colour;
-            bodyPart.material.SetColor("_EmissionColor", colour);
+                part.material.color = colour;
+                part.material.SetColor("_EmissionColor", colour);
+            }
         }
     }
 }
