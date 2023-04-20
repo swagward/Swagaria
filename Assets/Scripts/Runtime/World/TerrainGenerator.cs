@@ -63,7 +63,7 @@ namespace PixelWorlds.Runtime.World
                                 PlaceTile(TileAtlas.Flower, x, y + 1, false);
                         }
 
-                        if (GetTile(x, y - 1, 0) is null)
+                        if (GetTile(x, y - 1, 0) is null && GetTile(x, y, 0) is null)
                         {
                             var i = 0;
                             while (i < 5)

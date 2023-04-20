@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 namespace PixelWorlds.Runtime.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Player Control")] 
+        private static PlayerController Instance;
+
+        [Header("Player Control")]
         [SerializeField] private float speed;
         private Vector2Int _mousePos;
 
@@ -21,23 +24,33 @@ namespace PixelWorlds.Runtime.Player
         private float _horizontal;
         private Camera _mainCam;
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+            
+            if (Instance is null)
+                Instance = this;
+            else Destroy(gameObject);
+            
+            _mainCam = Camera.main;
+            _rb2 = GetComponent<Rigidbody2D>();
+        }
+
         public void Spawn(int x, int y)
         {
+            GameManager.Initialized = true;
             transform.position = new Vector2(x, y + 3);
-            _mainCam = Camera.main;
-
-            _rb2 = GetComponent<Rigidbody2D>();
-            _rb2.freezeRotation = true;
+            speed = 6;
         }
 
         private void Update()
         {
+            if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
             
             //Jumping
-            //Debug.Log(IsGrounded());
             if (Input.GetKeyDown(JumpKey) && IsGrounded())
                 _rb2.velocity = new Vector2(_rb2.velocity.x, jumpForce);
             if (Input.GetKeyUp(JumpKey) && _rb2.velocity.y > 0)

@@ -7,6 +7,7 @@ namespace PixelWorlds.Runtime.Player
     public class GameManager : MonoBehaviour
     {
         private static GameManager Instance = null;
+        public static bool Initialized { get; set; }
         
         private void Awake()
         {
@@ -20,6 +21,11 @@ namespace PixelWorlds.Runtime.Player
             if (Instance is null)
                 Instance = this;
             else Destroy(gameObject);
+        }
+
+        private void Update()
+        {
+            Debug.Log($"{Initialized}");
         }
     }
 }

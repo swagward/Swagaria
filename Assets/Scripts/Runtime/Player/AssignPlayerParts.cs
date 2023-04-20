@@ -10,6 +10,9 @@ namespace PixelWorlds.Runtime.Player
         public void ClearList()
         {
             modifier.bodyParts.Clear();
+            modifier.red.value = 255;
+            modifier.green.value = 255;
+            modifier.blue.value = 255;
         }
 
         public void AddTo(SpriteRenderer toAdd)

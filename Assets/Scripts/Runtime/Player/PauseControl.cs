@@ -14,6 +14,7 @@ namespace PixelWorlds.Runtime.Player
         
         private void Update()
         {
+            if (!GameManager.Initialized) return;
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
             
             IsPaused = !IsPaused;
