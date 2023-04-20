@@ -10,9 +10,10 @@ namespace PixelWorlds.Runtime.World
 
         public static void Init()
         {
-            Settings = WorldCreation.SettingsToUse ? WorldCreation.SettingsToUse : Resources.Load<TerrainSettings>("DefaultSettings");
+            Settings = WorldCreation.SettingsToUse ? 
+                       WorldCreation.SettingsToUse : Resources.Load<TerrainSettings>("DefaultSettings");
 
-            Debug.Log(Settings.name);
+            //Debug.Log(Settings.name);
             Settings.seed = GetSeed();
             
             Settings.InitPlayer();
@@ -30,9 +31,9 @@ namespace PixelWorlds.Runtime.World
             if(y > height)
                 return null;
                 
-            //Spawn player
-            // if (x == Settings.worldSize.x / 2)
-            //     Settings.player.Spawn(x, (int)height);
+             //Spawn player
+             if (x == Settings.worldSize.x / 2)
+                 Settings.Player.Spawn(x, (int)height);
             
             //Primary cave gen
             var noiseValue = 0f;

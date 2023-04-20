@@ -18,5 +18,4 @@ MonoBehaviour:
   removeOnUse: 1
   tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
   tileLayer: 1
-  breakSound: {fileID: 0}
-  placeSound: {fileID: 0}
+  wallVariant: {fileID: 11400000, guid: 24d23b5de4c08e94dad4a85b40a9388b, type: 2}

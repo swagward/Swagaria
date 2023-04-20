@@ -84,7 +84,7 @@ namespace PixelWorlds.Runtime.World
 
         private void PlaceTree(int x, int y)
         {   //Restraints to keep trees in the world and keep a distance between trees (not always perfect but no need to fix)
-            if (x < 2 || x > Settings.worldSize.x - 2) return;
+            if (x < 1 || x > Settings.worldSize.x - 1) return;
             if (GetTile(x + 1, y, 0) is not null || GetTile(x - 1, y, 0) is not null) return;
             if (GetTile(x + 2, y, 0) is not null || GetTile(x - 2, y, 0) is not null) return;
             if (GetTile(x + 1, y + 1, 0) is not null || GetTile(x - 1, y + 1, 0) is not null) return;
@@ -102,11 +102,11 @@ namespace PixelWorlds.Runtime.World
                     switch (branchChance)
                     {
                         case < 2:
-                            if(GetTile(x + 1, y, 1) is null || GetTile(x + 1, y, 0) is null)
+                            if(GetTile(x + 1, y, 1) is null || GetTile(x + 1, y + i, 0) is null)
                                 PlaceTile(TileAtlas.OakBranch, x + 1, y + i, false);
                             break;
                         case > 8:
-                            if(GetTile(x - 1, y, 1) is null || GetTile(x - 1, y, 0) is null)
+                            if(GetTile(x - 1, y, 1) is null || GetTile(x - 1, y + i, 0) is null)
                                 PlaceTile(TileAtlas.OakBranch, x - 1, y + i, false);
                             break;
                     }
@@ -138,9 +138,9 @@ namespace PixelWorlds.Runtime.World
             SetTile(tile, x, y, (int)tile.tileLayer);
             //tile.placeSound?.Play();
 
-            if (tile is LiquidTileClass liquidTile)
+            if (tile is LiquidTileClass @liquidTile)
             {
-                var newLiquidTile = new LiquidTile(x, y, this, liquidTile);
+                var newLiquidTile = new LiquidTile(x, y, this, @liquidTile);
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
         }
@@ -151,22 +151,27 @@ namespace PixelWorlds.Runtime.World
             if (y < 0 || y >= Settings.worldSize.y) return;
             if (GetTile(x, y, z) is null) return;
             
+            //Place wall backgrounds when possible
+            var wallTile = GetTile(x, y, 1).wallVariant;
+            if (wallTile is not null) 
+                PlaceTile(wallTile, x, y, false);
+            
             //Remove tile from world and array
             SetTile(null, x, y, z);
         }
 
-        // private bool CheckForTiles([CanBeNull] TileClass tile, int x, int y, int radius, TileLayer layer)
-        // {
-        //     for (var ix = 0; ix < radius; ix++)
-        //     {
-        //         for (var iy = 0; iy < radius; iy++)
-        //         {
-        //             if (GetTile(x - ix, y - iy, (int)layer) == tile) return true;
-        //             if (GetTile(x + ix, y + iy, (int)layer) == tile) return true;
-        //         }
-        //     }
-        //
-        //     return false;
-        // }
+        private bool CheckForTiles([CanBeNull] TileClass tile, int x, int y, int radius, TileLayer layer)
+        {
+            for (var ix = 0; ix < radius; ix++)
+            {
+                for (var iy = 0; iy < radius; iy++)
+                {
+                    if (GetTile(x - ix, y - iy, (int)layer) == tile) return true;
+                    if (GetTile(x + ix, y + iy, (int)layer) == tile) return true;
+                }
+            }
+        
+            return false;
+        }
     }
 }

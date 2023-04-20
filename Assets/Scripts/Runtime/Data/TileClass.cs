@@ -8,6 +8,7 @@ namespace PixelWorlds.Runtime.Data
     {
         public TileBase tile;
         public TileLayer tileLayer;
+        public TileClass wallVariant;
         // public AudioSource breakSound;
         // public AudioSource placeSound;
         //[SerializeField] private Color mapPixel;

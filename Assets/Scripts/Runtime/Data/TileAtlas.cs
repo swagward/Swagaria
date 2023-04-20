@@ -10,6 +10,12 @@ namespace PixelWorlds.Runtime.Data
         public static readonly TileClass Stone = Resources.Load<TileClass>("Tiles/Blocks/Stone");
         public static readonly TileClass OakWood = Resources.Load<TileClass>("Tiles/Blocks/OakWood");
         public static readonly TileClass StoneBricks = Resources.Load<TileClass>("Tiles/Blocks/StoneBricks");
+        
+        //Ores
+        public static readonly OreTileClass CopperOre = Resources.Load<OreTileClass>("Tiles/Blocks/CopperOre");
+        public static readonly OreTileClass IronOre = Resources.Load<OreTileClass>("Tiles/Blocks/IronOre");
+        public static readonly OreTileClass SilverOre = Resources.Load<OreTileClass>("Tiles/Blocks/SilverOre");
+        public static readonly OreTileClass GoldOre = Resources.Load<OreTileClass>("Tiles/Blocks/GoldOre");
 
         //Addons
         public static readonly TileClass Vine = Resources.Load<TileClass>("Tiles/Addons/Vine");

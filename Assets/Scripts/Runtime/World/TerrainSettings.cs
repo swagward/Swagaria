@@ -7,10 +7,10 @@ namespace PixelWorlds.Runtime.World
     [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Settings")]
     public class TerrainSettings : ScriptableObject
     { 
-        public PlayerController player;
+        public PlayerController Player { get; private set; }
 
         public void InitPlayer()
-            => player = FindObjectOfType<PlayerController>(); 
+            => Player = FindObjectOfType<PlayerController>(); 
         
         [Header("Generation")] 
         public Vector2Int worldSize;
