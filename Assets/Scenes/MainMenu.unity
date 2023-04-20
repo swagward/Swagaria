@@ -865,6 +865,11 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!212 &240895510 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5205186731134086501, guid: c5da4cb0d7e2fa540b7dc7eb35867f19, type: 3}
+  m_PrefabInstance: {fileID: 5982819379505956310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &243695808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708936485}
+  - component: {fileID: 708936486}
   m_Layer: 5
   m_Name: PlayerParts
   m_TagString: Untagged
@@ -2693,6 +2699,19 @@ RectTransform:
   m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &708936486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708936484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9051df3bc9b1cd40a65896316986880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifier: {fileID: 1004297596}
 --- !u!1 &726134072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3798,7 +3817,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 827135422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936484}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &827135422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4057,7 +4100,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 848517715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936484}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &848517715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5774,10 +5841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a62139d0cd99748a558078cf693e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyParts:
-  - {fileID: 598217874}
-  - {fileID: 166530304}
-  - {fileID: 1925404215}
+  bodyParts: []
   red: {fileID: 106616082}
   green: {fileID: 1843938942}
   blue: {fileID: 1051640918}
@@ -7005,7 +7069,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1349653537}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936484}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1349653537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8029,7 +8117,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1587940608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936484}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1587940608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8157,7 +8269,7 @@ GameObject:
   - component: {fileID: 1615537623}
   - component: {fileID: 1615537622}
   m_Layer: 5
-  m_Name: Head
+  m_Name: Skin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8227,7 +8339,55 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1615537623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: ClearList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1925404215}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 166530304}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 598217874}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1615537623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9451,7 +9611,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005201660}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: ClearList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708936486}
+        m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.AssignPlayerParts, com.NCG.PixelWorlds.Runtime
+        m_MethodName: AddTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 240895510}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2005201660
 MonoBehaviour:
   m_ObjectHideFlags: 0

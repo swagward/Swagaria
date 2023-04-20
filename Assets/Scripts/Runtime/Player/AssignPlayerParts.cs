@@ -11,5 +11,10 @@ namespace PixelWorlds.Runtime.Player
         {
             modifier.bodyParts.Clear();
         }
+
+        public void AddTo(SpriteRenderer toAdd)
+        {
+            modifier.bodyParts.Add(toAdd);
+        }
     }
 }
