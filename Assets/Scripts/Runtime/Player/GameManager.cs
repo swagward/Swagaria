@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 namespace PixelWorlds.Runtime.Player
 {
@@ -8,13 +6,14 @@ namespace PixelWorlds.Runtime.Player
     {
         private static GameManager Instance = null;
         public static bool Initialized { get; set; }
+        public static bool BossActive { get; set; }
         
         private void Awake()
         {
             PauseControl.IsPaused = false;
             Time.timeScale = 1;
             
-            Debug.Log($"{PauseControl.IsPaused} : {Time.timeScale}.");
+            //Debug.Log($"{PauseControl.IsPaused} : {Time.timeScale}.");
             
             DontDestroyOnLoad(this);
             
@@ -23,9 +22,9 @@ namespace PixelWorlds.Runtime.Player
             else Destroy(gameObject);
         }
 
-        private void Update()
+        /*private void Update()
         {
             Debug.Log($"{Initialized}");
-        }
+        }*/
     }
 }

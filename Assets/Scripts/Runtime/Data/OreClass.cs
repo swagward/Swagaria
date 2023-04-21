@@ -6,6 +6,7 @@ namespace PixelWorlds.Runtime.Data
     [System.Serializable]
     public class OreClass
     {
+        [Header("Ore Data")]
         public TileClass oreTile;
         public bool[,] OreMask;
         [SerializeField, Range(0, 1)] private float spawnFrequency;

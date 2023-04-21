@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using PixelWorlds.Runtime.Player;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace PixelWorlds.Runtime.Data
 {
-    [CreateAssetMenu(fileName = "newItem", menuName = "Pixel Worlds/Items/Tiles/Tile", order = 0)]
+    [CreateAssetMenu(fileName = "NewItem", menuName = "Pixel Worlds/Items/Tiles/Tile", order = 0)]
     public class TileClass : ItemClass
     {
+        [Header("Tile Data")]
         public TileBase tile;
         public TileLayer tileLayer;
         public TileClass wallVariant;
@@ -13,9 +15,9 @@ namespace PixelWorlds.Runtime.Data
         // public AudioSource placeSound;
         //[SerializeField] private Color mapPixel;
 
-        public override void Use()
+        public override void Use(PlayerController caller)
         {
-            base.Use();
+            base.Use(caller);
             //other shit for placing tiles lol
         }
     }

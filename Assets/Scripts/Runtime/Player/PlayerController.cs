@@ -1,3 +1,4 @@
+using PixelWorlds.Runtime.Data;
 using System;
 using UnityEngine;
 
@@ -6,10 +7,13 @@ namespace PixelWorlds.Runtime.Player
     public class PlayerController : MonoBehaviour
     {
         private static PlayerController Instance;
+        public ItemClass itemToUse;
 
         [Header("Player Control")]
         [SerializeField] private float speed;
         private Vector2Int _mousePos;
+        public int health;
+        public AudioSource audioPlayer;
 
         [Header("Jump/Ground Detection")] 
         [SerializeField] private Transform groundCheck;
@@ -40,7 +44,6 @@ namespace PixelWorlds.Runtime.Player
         {
             GameManager.Initialized = true;
             transform.position = new Vector2(x, y + 3);
-            speed = 6;
         }
 
         private void Update()
@@ -60,6 +63,10 @@ namespace PixelWorlds.Runtime.Player
             var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
             _mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             _mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
+
+            if (Input.GetMouseButtonDown(1))
+                itemToUse.Use(this);
+
         }
 
         private void FixedUpdate()

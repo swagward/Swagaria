@@ -16,7 +16,9 @@ namespace PixelWorlds.Runtime.Data
         public class TileCell
         {
             public readonly TileClass tile;
-            private ushort _x, _y, _z;
+            private readonly ushort _x;
+            private readonly ushort _y;
+            private readonly ushort _z;
 
             public TileCell([CanBeNull] TileClass tile, int x, int y, int z)
             {
