@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class AssignPlayerParts : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     [CreateAssetMenu(fileName = "newLiquid", menuName = "Pixel Worlds/Items/Tiles/Liquid", order = 2)]
     public class LiquidTileClass : TileClass

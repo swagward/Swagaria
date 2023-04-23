@@ -1,8 +1,8 @@
+using TerrariaClone.Runtime.Data;
 using UnityEngine;
-using PixelWorlds.Runtime.Data;
 using UnityRandom = UnityEngine.Random;
 
-namespace PixelWorlds.Runtime.World
+namespace TerrariaClone.Runtime.Terrain
 {
     public static class TerrainConfig
     {
@@ -12,24 +12,19 @@ namespace PixelWorlds.Runtime.World
         {
             Settings = WorldCreation.SettingsToUse ? 
                        WorldCreation.SettingsToUse : Resources.Load<TerrainSettings>("DefaultSettings");
-
-            //Debug.Log(Settings.name);
-            Settings.seed = GetSeed();
             
+            Settings.seed = GetSeed();
             Settings.InitPlayer();
         }
 
         private static int GetSeed() 
-        {
-            return UnityRandom.Range(-Settings.seedRange, Settings.seedRange);
-        }
+            => UnityRandom.Range(-Settings.seedRange, Settings.seedRange);
 
         public static TileClass GenerateTile(int x, int y)
         {
             //Stop world from generating too high
             var height = GetHeight(x);
-            if(y > height)
-                return null;
+            if(y > height) return null;
                 
              //Spawn player
              if (x == Settings.worldSize.x / 2)
@@ -75,7 +70,8 @@ namespace PixelWorlds.Runtime.World
             var noiseHeight = 0f;
             for (var i = 0; i < Settings.terrainOctaves; i++)
             {
-                noiseHeight += Mathf.PerlinNoise((x + Settings.seed) * freq, Settings.seed * freq) * Settings.heightMultiplier + Settings.heightAddition;
+                noiseHeight += Mathf.PerlinNoise((x + Settings.seed) * freq, Settings.seed * freq) * 
+                    Settings.heightMultiplier + Settings.heightAddition;
                 freq *= 1.5f;
             }
             noiseHeight /= Settings.terrainOctaves;

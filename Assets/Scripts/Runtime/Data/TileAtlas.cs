@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     public static class TileAtlas
     {
@@ -15,7 +15,7 @@ namespace PixelWorlds.Runtime.Data
         public static readonly OreTileClass CopperOre = Resources.Load<OreTileClass>("Tiles/Blocks/CopperOre");
         public static readonly OreTileClass IronOre = Resources.Load<OreTileClass>("Tiles/Blocks/IronOre");
         public static readonly OreTileClass SilverOre = Resources.Load<OreTileClass>("Tiles/Blocks/SilverOre");
-        public static readonly OreTileClass GoldOre = Resources.Load<OreTileClass>("Tiles/Blocks/GoldOre");
+        public static readonly OreTileClass GoldOre = Resources.Load<OreTileClass>("Tiles/Block/GoldOre");
 
         //Addons
         public static readonly TileClass Vine = Resources.Load<TileClass>("Tiles/Addons/Vine");

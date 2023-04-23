@@ -1,9 +1,8 @@
-﻿using System;
-using PixelWorlds.Runtime.Data;
-using PixelWorlds.Runtime.World;
+﻿using TerrariaClone.Runtime.Data;
+using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class TestMovement : MonoBehaviour
     {

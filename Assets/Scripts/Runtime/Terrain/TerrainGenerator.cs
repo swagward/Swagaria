@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using JetBrains.Annotations;
+using TerrariaClone.Runtime.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using PixelWorlds.Runtime.Data;
-using static PixelWorlds.Runtime.Data.WorldData;
-using static PixelWorlds.Runtime.World.TerrainConfig;
+using static TerrariaClone.Runtime.Data.WorldData;
+using static TerrariaClone.Runtime.Terrain.TerrainConfig;
 
-namespace PixelWorlds.Runtime.World
+namespace TerrariaClone.Runtime.Terrain
 {
     [RequireComponent(typeof(Grid))]
     public class TerrainGenerator : MonoBehaviour
@@ -83,7 +81,10 @@ namespace PixelWorlds.Runtime.World
         }
 
         private void PlaceTree(int x, int y)
-        {   //Restraints to keep trees in the world and keep a distance between trees (not always perfect but no need to fix)
+        {   
+            //REWRITE THIS LOGIC EVENTUALLY
+            
+            //Restraints to keep trees in the world and keep a distance between trees (not always perfect but no need to fix)
             if (x < 1 || x > Settings.worldSize.x - 1) return;
             if (GetTile(x + 1, y, 0) is not null || GetTile(x - 1, y, 0) is not null) return;
             if (GetTile(x + 2, y, 0) is not null || GetTile(x - 2, y, 0) is not null) return;
@@ -136,7 +137,6 @@ namespace PixelWorlds.Runtime.World
             
             //Add tile to world and array then play tile sound if possible
             SetTile(tile, x, y, (int)tile.tileLayer);
-            //tile.placeSound?.Play();
 
             if (tile is LiquidTileClass @liquidTile)
             {
@@ -160,18 +160,27 @@ namespace PixelWorlds.Runtime.World
             SetTile(null, x, y, z);
         }
 
-        private bool CheckForTiles([CanBeNull] TileClass tile, int x, int y, int radius, TileLayer layer)
+        public bool CanPlaceHere(int x, int y)
         {
-            for (var ix = 0; ix < radius; ix++)
-            {
-                for (var iy = 0; iy < radius; iy++)
-                {
-                    if (GetTile(x - ix, y - iy, (int)layer) == tile) return true;
-                    if (GetTile(x + ix, y + iy, (int)layer) == tile) return true;
-                }
-            }
-        
+            //check connected tiles nearby
+            if (GetTile(x + 1, y, 1) is not null) return true;
+            if (GetTile(x - 1, y, 1) is not null) return true;
+            if (GetTile(x, y + 1, 1) is not null) return true;
+            if (GetTile(x, y - 1, 1) is not null) return true;
+            
+            //check if theres a wall background behind
+            if (GetTile(x, y, 3) is not null) return true;
+
+            //if theres water or tree then say no lol
+            if (GetTile(x, y, 0) != TileAtlas.OakTree && 
+                GetTile(x, y, 0) != TileAtlas.OakBranch && 
+                GetTile(x, y, 0) is not LiquidTileClass) return false;
+            
+            //default
             return false;
         }
+
+        public bool IsIlluminate(int x, int y) 
+            => GetTile(x, y) is TorchTile;
     }
 }

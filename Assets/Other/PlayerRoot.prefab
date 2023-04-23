@@ -510,9 +510,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6051988571355963816}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PixelWorlds.Runtime.Player.GameManager, com.NCG.PixelWorlds.Runtime
         m_MethodName: set_Initialized
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1309776607213708731}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -933,6 +945,7 @@ GameObject:
   - component: {fileID: 8583461397963163895}
   - component: {fileID: 1475914758645245709}
   - component: {fileID: 4792136456784264657}
+  - component: {fileID: 8881381355328682101}
   m_Layer: 8
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -1026,8 +1039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bebf342f25acf429ac9163a0e8188e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToUse: {fileID: 11400000, guid: 5098e6c9f8cbb9d40b7d9ea560db07e0, type: 2}
-  speed: 0
+  itemToUse: {fileID: 11400000, guid: 49820174180cfd54493378ac8ec0ba1d, type: 2}
+  speed: 6
   health: 1
   audioPlayer: {fileID: 239082634}
   groundCheck: {fileID: 147156531}
@@ -1035,7 +1048,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  jumpForce: 6
+  jumpForce: 10
 --- !u!95 &8583461397963163895
 Animator:
   serializedVersion: 4
@@ -1103,6 +1116,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8881381355328682101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962456870336506890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b606a15e168543318f8f7b91c4a6887f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3016367574323660795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,7 +1718,6 @@ GameObject:
   - component: {fileID: 426034816935825712}
   - component: {fileID: 5847559846522096656}
   - component: {fileID: 1714193008276728749}
-  - component: {fileID: 6051988571355963816}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1794,18 +1818,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99b0ea73c3a672342a10c42732420457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6051988571355963816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6453988299091984620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b606a15e168543318f8f7b91c4a6887f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6901090091084630505

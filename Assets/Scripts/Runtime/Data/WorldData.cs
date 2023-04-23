@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     public static class WorldData
     {

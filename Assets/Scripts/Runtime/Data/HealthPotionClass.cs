@@ -1,7 +1,7 @@
-﻿using PixelWorlds.Runtime.Player;
+﻿using TerrariaClone.Runtime.Player;
 using UnityEngine;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     [CreateAssetMenu(fileName = "HealthPotion", menuName = "Pixel Worlds/Items/Consumables/HealthPotion", order = 0)]
     public class HealthPotionClass : ConsumableClass

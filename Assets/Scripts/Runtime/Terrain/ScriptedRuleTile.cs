@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace PixelWorlds.Runtime.World
+namespace TerrariaClone.Runtime.Terrain
 {
     [CreateAssetMenu(fileName = "newRuleTile", menuName = "Pixel Worlds/Rule Tile")]
     public class ScriptedRuleTile : RuleTile<ScriptedRuleTile.Neighbor>
@@ -40,8 +40,6 @@ namespace PixelWorlds.Runtime.World
     
         public override void RefreshTile(Vector3Int position, ITilemap tilemap)
         {
-            //Debug.Log($"{tilemap} + {position}");
-            
             tilemap.RefreshTile(position);
             tilemap.RefreshTile(position + Vector3Int.down);
             tilemap.RefreshTile(position + Vector3Int.up);

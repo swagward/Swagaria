@@ -1,10 +1,10 @@
 ﻿using System.Collections;
+using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
-using PixelWorlds.Runtime.World;
-using static PixelWorlds.Runtime.Data.WorldData;
-using static PixelWorlds.Runtime.World.TerrainConfig;
+using static TerrariaClone.Runtime.Data.WorldData;
+using static TerrariaClone.Runtime.Terrain.TerrainConfig;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     public class LiquidTile
     {

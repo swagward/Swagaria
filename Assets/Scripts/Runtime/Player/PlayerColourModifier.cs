@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class PlayerColourModifier : MonoBehaviour
     {

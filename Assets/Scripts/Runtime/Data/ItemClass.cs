@@ -1,7 +1,7 @@
+using TerrariaClone.Runtime.Player;
 using UnityEngine;
-using PixelWorlds.Runtime.Player;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     [CreateAssetMenu(fileName = "NewItem", menuName = "Pixel Worlds/Items/Item")]
     public class ItemClass : ScriptableObject

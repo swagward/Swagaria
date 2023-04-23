@@ -1,8 +1,7 @@
-using PixelWorlds.Runtime.Data;
-using System;
+using TerrariaClone.Runtime.Data;
 using UnityEngine;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class PlayerController : MonoBehaviour
     {
@@ -48,7 +47,7 @@ namespace PixelWorlds.Runtime.Player
 
         private void Update()
         {
-            if (!GameManager.Initialized) return;
+            //if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");

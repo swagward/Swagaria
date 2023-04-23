@@ -1,7 +1,7 @@
+using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
-using PixelWorlds.Runtime.World;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     [System.Serializable]
     public class OreClass

@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using PixelWorlds.Runtime.Data;
-using PixelWorlds.Runtime.Player;
+﻿using TerrariaClone.Runtime.Player;
+using UnityEngine;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     public class ConsumableClass : ItemClass
     {

@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class PauseControl : MonoBehaviour
     {

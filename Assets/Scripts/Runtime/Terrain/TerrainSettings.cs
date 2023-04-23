@@ -1,8 +1,8 @@
-﻿using PixelWorlds.Runtime.Player;
-using PixelWorlds.Runtime.Data;
+﻿using TerrariaClone.Runtime.Data;
+using TerrariaClone.Runtime.Player;
 using UnityEngine;
 
-namespace PixelWorlds.Runtime.World
+namespace TerrariaClone.Runtime.Terrain
 {
     [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Settings")]
     public class TerrainSettings : ScriptableObject

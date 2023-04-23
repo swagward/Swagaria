@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class HealthManager : MonoBehaviour
     {

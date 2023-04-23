@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelWorlds.Runtime.World
+namespace TerrariaClone.Runtime.Terrain
 {
     public class WorldCreation : MonoBehaviour
     {

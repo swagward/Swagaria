@@ -1,6 +1,6 @@
 {
-    "name": "com.NCG.PixelWorlds.Editor",
-    "rootNamespace": "PixelWorlds",
+    "name": "com.NCG.TerrariaClone.Editor",
+    "rootNamespace": "TerrariaClone",
     "references": [
         "GUID:fb28cc4f805cb1647b70d332f161e316"
     ],

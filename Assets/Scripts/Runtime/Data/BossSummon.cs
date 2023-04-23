@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using PixelWorlds.Runtime.Player;
+﻿using TerrariaClone.Runtime.Player;
+using UnityEngine;
 
-namespace PixelWorlds.Runtime.Data
+namespace TerrariaClone.Runtime.Data
 {
     [CreateAssetMenu(fileName = "BossSummon", menuName = "Pixel Worlds/Items/Consumables/BossSummon", order = 0)]
     public class BossSummon : ConsumableClass
@@ -10,9 +10,14 @@ namespace PixelWorlds.Runtime.Data
 
         public override void Use(PlayerController caller)
         {
-            //caller.anim.SetTrigger("SummonBoss");
-            var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
-
+            if (!GameManager.BossActive)
+            {
+                //get direction player is facing
+                //spawn outside of cameras range
+                //have boss come from opposite players direction
+                
+                var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
+            }
         }
     }
 }

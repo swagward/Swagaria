@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelWorlds.Runtime.Player
+namespace TerrariaClone.Runtime.Player
 {
     public class GameManager : MonoBehaviour
     {
@@ -22,9 +22,9 @@ namespace PixelWorlds.Runtime.Player
             else Destroy(gameObject);
         }
 
-        /*private void Update()
-        {
-            Debug.Log($"{Initialized}");
-        }*/
+        // private void Update()
+        // {
+        //     Debug.Log($"{Initialized}");
+        // }
     }
 }
