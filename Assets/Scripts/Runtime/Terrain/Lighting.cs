@@ -15,7 +15,8 @@ namespace TerrariaClone.Runtime.Terrain
         
         private TerrainGenerator _terrain;
         private float[,] _lightValues;
-        
+        private static readonly int LightMap = Shader.PropertyToID("_LightMap");
+
         /// <summary>
         /// Needs to be highly optimised because it runs through every tile twice while checking neighbour tiles
         /// 400x200 world would have (400 x 200 x 2 x 4) updates per frame, which is 640,000
@@ -32,15 +33,9 @@ namespace TerrariaClone.Runtime.Terrain
             lightMapOverlay.position = new Vector3(Settings.worldSize.x / 2,
                 Settings.worldSize.y / 2, -10);
             
-            lightShader.SetTexture("_LightMap", lightMap);
+            lightShader.SetTexture(LightMap, lightMap);
             lightMap.filterMode = FilterMode.Point;
         }
-
-        // private void Update()
-        // {
-        //     StopCoroutine(UpdateLighting());
-        //     StartCoroutine(UpdateLighting());
-        // }
 
         public IEnumerator UpdateLighting()
         {
@@ -104,8 +99,16 @@ namespace TerrariaClone.Runtime.Terrain
                 }
             }
             
-            // lightShader.SetTexture("_LightMap", lightMap);
-            // lightMap.Apply();
+            for (var x = 0; x < Settings.worldSize.x; x++)
+            {
+                for (var y = 0; y < Settings.worldSize.y; y++)
+                {
+                    lightMap.SetPixel(x, y, new Color(0, 0, 0, _lightValues[x, y]));
+                }
+            }
+            
+            lightMap.Apply();
+            lightShader.SetTexture(LightMap, lightMap);
         }
     }
 }

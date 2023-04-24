@@ -68,7 +68,8 @@ namespace TerrariaClone.Runtime.Player
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
 
             if (Input.GetMouseButtonDown(1))
-                itemToUse.Use(this);
+                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);
+            //itemToUse.Use(this);
 
         }
 

@@ -20,7 +20,7 @@ namespace TerrariaClone.Runtime.Data
         {
             base.Use(caller);
             if(caller.terrain.CanPlaceHere(caller.mousePos.x, caller.mousePos.y))
-                caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false);
+                caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false, true);
         }
 
         public override TileClass GetTile() { return this; }
