@@ -19,7 +19,11 @@ namespace TerrariaClone.Runtime.Data
         public override void Use(PlayerController caller)
         {
             base.Use(caller);
+            if(caller.terrain.CanPlaceHere(caller.mousePos.x, caller.mousePos.y))
+                caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false);
         }
+
+        public override TileClass GetTile() { return this; }
     }
 
     public enum TileLayer : int

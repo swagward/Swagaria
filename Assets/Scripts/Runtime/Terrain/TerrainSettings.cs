@@ -6,8 +6,8 @@ namespace TerrariaClone.Runtime.Terrain
 {
     [CreateAssetMenu(fileName = "newSettings", menuName = "Pixel Worlds/Settings")]
     public class TerrainSettings : ScriptableObject
-    { 
-        public PlayerController Player { get; private set; }
+    {
+        public PlayerController Player; //{ get; private set; }
 
         public void InitPlayer()
             => Player = FindObjectOfType<PlayerController>(); 

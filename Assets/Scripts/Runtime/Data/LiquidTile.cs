@@ -43,6 +43,8 @@ namespace TerrariaClone.Runtime.Data
                 //Place tile to right
                 if(_x < Settings.worldSize.x && _y > 0 && GetTile(_x + 1, _y, 1) is null && GetTile(_x, _y - 1, 1 ) is not null)
                     _terrain.PlaceTile(_liquidData, _x + 1, _y, false);
+                
+                if(GetTile(_x, _y, 1) is not null) _terrain.RemoveTile(_x, _y, 2, true);
             }
         }
     }

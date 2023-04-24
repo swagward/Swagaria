@@ -10,6 +10,7 @@ namespace TerrariaClone.Runtime.Terrain
     public class TerrainGenerator : MonoBehaviour
     {
         private Tilemap[] _tilemaps;
+        private Lighting _lighting;
 
         private void Awake() => Init();
         private void Init()
@@ -30,6 +31,10 @@ namespace TerrariaClone.Runtime.Terrain
             }
 
             GenerateTerrain();
+
+            _lighting = GetComponent<Lighting>();
+            _lighting.Init();
+            StartCoroutine(_lighting.UpdateLighting());
         }
 
         private void GenerateTerrain()
@@ -128,14 +133,14 @@ namespace TerrariaClone.Runtime.Terrain
             }
         }
         
-        public void PlaceTile(TileClass tile, int x, int y, bool overrideTile)
+        public void PlaceTile(TileClass tile, int x, int y, bool overrideTile, bool updateLighting = false)
         {   //Constraints
             if (tile is null) return;
             if (x < 0 || x >= Settings.worldSize.x) return;
             if (y < 0 || y >= Settings.worldSize.y) return;
             if (GetTile(x, y, (int)tile.tileLayer) is not null && overrideTile is false) return;
             
-            //Add tile to world and array then play tile sound if possible
+            //Add tile to world and array
             SetTile(tile, x, y, (int)tile.tileLayer);
 
             if (tile is LiquidTileClass @liquidTile)
@@ -143,9 +148,11 @@ namespace TerrariaClone.Runtime.Terrain
                 var newLiquidTile = new LiquidTile(x, y, this, @liquidTile);
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
+
+            if (updateLighting) StartCoroutine(_lighting.UpdateLighting());
         }
-        
-        public void RemoveTile(int x, int y, int z)
+
+        public void RemoveTile(int x, int y, int z, bool updateLighting = false)
         {   //Constraints
             if (x < 0 || x >= Settings.worldSize.x) return;
             if (y < 0 || y >= Settings.worldSize.y) return;
@@ -158,6 +165,8 @@ namespace TerrariaClone.Runtime.Terrain
             
             //Remove tile from world and array
             SetTile(null, x, y, z);
+            
+            if (updateLighting) StartCoroutine(_lighting.UpdateLighting());
         }
 
         public bool CanPlaceHere(int x, int y)
@@ -172,15 +181,14 @@ namespace TerrariaClone.Runtime.Terrain
             if (GetTile(x, y, 3) is not null) return true;
 
             //if theres water or tree then say no lol
-            if (GetTile(x, y, 0) != TileAtlas.OakTree && 
-                GetTile(x, y, 0) != TileAtlas.OakBranch && 
-                GetTile(x, y, 0) is not LiquidTileClass) return false;
+            if (GetTile(x, y, 0) == TileAtlas.OakTree || 
+                GetTile(x, y, 0) == TileAtlas.OakBranch) return false;
             
             //default
             return false;
         }
 
         public bool IsIlluminate(int x, int y) 
-            => GetTile(x, y) is TorchTile;
+            => GetTile(x, y, 1) is TorchTile;
     }
 }

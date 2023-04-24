@@ -1,4 +1,5 @@
 using TerrariaClone.Runtime.Data;
+using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
 
 namespace TerrariaClone.Runtime.Player
@@ -6,11 +7,12 @@ namespace TerrariaClone.Runtime.Player
     public class PlayerController : MonoBehaviour
     {
         private static PlayerController Instance;
+        public TerrainGenerator terrain;
         public ItemClass itemToUse;
 
         [Header("Player Control")]
         [SerializeField] private float speed;
-        private Vector2Int _mousePos;
+        public Vector2Int mousePos;
         public int health;
         public AudioSource audioPlayer;
 
@@ -43,11 +45,13 @@ namespace TerrariaClone.Runtime.Player
         {
             GameManager.Initialized = true;
             transform.position = new Vector2(x, y + 3);
+
+            terrain = FindObjectOfType<TerrainGenerator>();
         }
 
         private void Update()
         {
-            //if (!GameManager.Initialized) return;
+            if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
@@ -60,8 +64,8 @@ namespace TerrariaClone.Runtime.Player
 
             //Convert mouse position to screen space to interact with tiles
             var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
-            _mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
-            _mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
+            mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
+            mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
 
             if (Input.GetMouseButtonDown(1))
                 itemToUse.Use(this);
