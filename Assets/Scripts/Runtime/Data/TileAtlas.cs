@@ -33,5 +33,8 @@ namespace TerrariaClone.Runtime.Data
         public static readonly LiquidTileClass Lava = Resources.Load<LiquidTileClass>("Tiles/Liquids/Lava");
         public static readonly LiquidTileClass Honey = Resources.Load<LiquidTileClass>("Tiles/Liquids/Honey");
         public static readonly LiquidTileClass Shimmer = Resources.Load<LiquidTileClass>("Tiles/Liquids/Shimmer"); //cum
+        
+        //Lights
+        public static readonly TorchTile Torch = Resources.Load<TorchTile>("Tiles/Lighting/Torch");
     }
 }

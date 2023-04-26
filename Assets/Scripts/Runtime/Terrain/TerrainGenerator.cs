@@ -24,6 +24,9 @@ namespace TerrariaClone.Runtime.Terrain
             Tilemaps = _tilemaps;
             WorldData.Init(Settings.worldSize);
 
+            //_lighting = GetComponent<Lighting>();
+            //_lighting.Init();
+            
             foreach (var ore in Settings.ores)
             {
                 ore.OreMask = new bool[Settings.worldSize.x, Settings.worldSize.y];
@@ -31,10 +34,7 @@ namespace TerrariaClone.Runtime.Terrain
             }
 
             GenerateTerrain();
-
-            _lighting = GetComponent<Lighting>();
-            _lighting.Init();
-            StartCoroutine(_lighting.UpdateLighting());
+            //_lighting.IUpdate(4);
         }
 
         private void GenerateTerrain()
@@ -149,7 +149,7 @@ namespace TerrariaClone.Runtime.Terrain
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
 
-            if (updateLighting) StartCoroutine(_lighting.UpdateLighting());
+            //if (updateLighting) _lighting.IUpdate(3);
         }
 
         public void RemoveTile(int x, int y, int z, bool updateLighting = false)
@@ -159,14 +159,14 @@ namespace TerrariaClone.Runtime.Terrain
             if (GetTile(x, y, z) is null) return;
             
             //Place wall backgrounds when possible
-            var wallTile = GetTile(x, y, 1).wallVariant;
-            if (wallTile is not null) 
-                PlaceTile(wallTile, x, y, false);
+            // var wallTile = GetTile(x, y, 1).wallVariant;
+            // if (wallTile is not null) 
+            //     PlaceTile(wallTile, x, y, false);
             
             //Remove tile from world and array
             SetTile(null, x, y, z);
-            
-            if (updateLighting) StartCoroutine(_lighting.UpdateLighting());
+
+            //if (updateLighting) _lighting.IUpdate(3);
         }
 
         public bool CanPlaceHere(int x, int y)

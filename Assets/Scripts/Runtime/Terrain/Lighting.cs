@@ -1,97 +1,114 @@
 ﻿using System.Collections;
+using TerrariaClone.Runtime.Data;
 using UnityEngine;
-using static TerrariaClone.Runtime.Terrain.TerrainConfig;
-using static TerrariaClone.Runtime.Data.WorldData;
 
 namespace TerrariaClone.Runtime.Terrain
 {
     public class Lighting : MonoBehaviour
     {
-        public int iterationCount;
-        public float sunlightBrightness = 15f;
-        public Texture2D lightMap;
-        public Transform lightMapOverlay;
-        public Material lightShader;
-        
         private TerrainGenerator _terrain;
         private float[,] _lightValues;
-        private static readonly int LightMap = Shader.PropertyToID("_LightMap");
+        public float sunlightBrightness = 15;
 
-        /// <summary>
-        /// Needs to be highly optimised because it runs through every tile twice while checking neighbour tiles
-        /// 400x200 world would have (400 x 200 x 2 x 4) updates per frame, which is 640,000
-        /// </summary>
+        public Texture2D lightMap;
+        public Transform lightOverlay;
+        public Material lightShader;
+        
+        public bool smoothLighting;
+        public bool update = false;
+
         public void Init()
         {
             _terrain = GetComponent<TerrainGenerator>();
 
-            _lightValues = new float[Settings.worldSize.x, Settings.worldSize.y];
-            lightMap = new Texture2D(Settings.worldSize.x, Settings.worldSize.y);
+            _lightValues = new float[TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y];
+            lightMap = new Texture2D(TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
             
-            lightMapOverlay.localScale =
-                new Vector3(Settings.worldSize.x, Settings.worldSize.y, 1);
-            lightMapOverlay.position = new Vector3(Settings.worldSize.x / 2,
-                Settings.worldSize.y / 2, -10);
+            lightOverlay.localScale =
+                new Vector3(TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y, 1);
+            lightOverlay.position = new Vector3(TerrainConfig.Settings.worldSize.x / 2,
+                TerrainConfig.Settings.worldSize.y / 2, -10);
             
-            lightShader.SetTexture(LightMap, lightMap);
-            lightMap.filterMode = FilterMode.Point;
+            lightShader.SetTexture("_LightMap", lightMap);
+
         }
 
-        public IEnumerator UpdateLighting()
+        private void Update()
+        {
+            lightMap.filterMode = smoothLighting ? FilterMode.Bilinear : FilterMode.Point;
+            
+            if(update)
+                IUpdate(2);
+        }
+
+        public void IUpdate(int iterations)
+        {
+            StopCoroutine(UpdateLighting(iterations));
+            StartCoroutine(UpdateLighting(iterations));
+        }
+
+        private IEnumerator UpdateLighting(int iterations)
         {
             yield return new WaitForEndOfFrame();
-            for (var i = 0; i < iterationCount; i++) 
+            for (var i = 0; i < iterations; i++)
             {
-                for (var x = 0; x < Settings.worldSize.x; x++)
+                for (var x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
                 {
                     var lightLevel = sunlightBrightness;
-                    for (var y = Settings.worldSize.y - 1; y >= 0; y--)
+                    for (var y = TerrainConfig.Settings.worldSize.y - 1; y >= 0; y--)
                     {
-                        if (_terrain.IsIlluminate(x, y) || //check if current tile is a torch tile
-                            (GetTile(x, y, 1) is null && GetTile(x, y, 3) is null)) //check if ground tile and background tile are null
+                        //check if this block is a torch OR exposes background
+                        if (/*_terrain.IsIlluminate(x, y) ||*/
+                            (WorldData.GetTile(x, y, 1) is null && WorldData.GetTile(x, y, 3) is null))
                             lightLevel = sunlightBrightness;
                         else
                         {
-                            //find the brightest neighbour
-                            var nx1 = Mathf.Clamp(x - 1, 0, Settings.worldSize.x - 1);
-                            var nx2 = Mathf.Clamp(x + 1, 0, Settings.worldSize.x - 1);
-                            var ny1 = Mathf.Clamp(y + 1, 0, Settings.worldSize.y - 1);
-                            var ny2 = Mathf.Clamp(y - 1, 0, Settings.worldSize.y - 1);
-                            
-                            lightLevel = Mathf.Max(_lightValues[nx1, y], _lightValues[nx2, y], 
-                                                   _lightValues[x, ny1], _lightValues[y, ny2]);
+                            //else find the brightest neighbour
+                            var nx1 = Mathf.Clamp(x - 1, 0, TerrainConfig.Settings.worldSize.x - 1);
+                            var nx2 = Mathf.Clamp(x - 1, 0, TerrainConfig.Settings.worldSize.x - 1);
+                            var ny1 = Mathf.Clamp(y - 1, 0, TerrainConfig.Settings.worldSize.y - 1);
+                            var ny2 = Mathf.Clamp(y - 1, 0, TerrainConfig.Settings.worldSize.y - 1);
 
-                            if (GetTile(x, y, 1) is null)
-                                lightLevel -= .75f;
-                            else _lightValues[x, y] = lightLevel;
+                            lightLevel = Mathf.Max(_lightValues[x, y], 
+                                _lightValues[nx1, y], _lightValues[nx2, y], 
+                                _lightValues[x, ny1], _lightValues[x, ny2]);
+
+                            if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= 2;
+                            else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= 2;
+                            else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= 2;
+                            else lightLevel -= 2;
                         }
 
                         _lightValues[x, y] = lightLevel;
                     }
                 }
-         
-                //reverse loops as to remove any glitched artefacts
-                for (var x = Settings.worldSize.y - 1; x >= 0; x--)
+                
+                //reverse calculation to remove artefacts
+                for (var x = TerrainConfig.Settings.worldSize.x - 1; x >= 0; x--)
                 {
                     var lightLevel = sunlightBrightness;
-                    for (var y = 0; y < Settings.worldSize.y; y++)
+                    for (var y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
                     {
-                        if (_terrain.IsIlluminate(x, y) || //same logic as before
-                            (GetTile(x, y, 1) is null && GetTile(x, y, 3) is null))
+                        //check if this block is a torch OR exposes background
+                        if (/*_terrain.IsIlluminate(x, y) ||*/
+                            (WorldData.GetTile(x, y, 1) is null && WorldData.GetTile(x, y, 3) is null))
                             lightLevel = sunlightBrightness;
                         else
                         {
-                            var nx1 = Mathf.Clamp(x - 1, 0, Settings.worldSize.x - 1);
-                            var nx2 = Mathf.Clamp(x + 1, 0, Settings.worldSize.x - 1);                            
-                            var ny1 = Mathf.Clamp(y - 1, 0, Settings.worldSize.y - 1);
-                            var ny2 = Mathf.Clamp(y + 1, 0, Settings.worldSize.y - 1);
+                            //else find the brightest neighbour
+                            var nx1 = Mathf.Clamp(x + 1, 0, TerrainConfig.Settings.worldSize.x - 1);
+                            var nx2 = Mathf.Clamp(x + 1, 0, TerrainConfig.Settings.worldSize.x - 1);
+                            var ny1 = Mathf.Clamp(y + 1, 0, TerrainConfig.Settings.worldSize.y - 1);
+                            var ny2 = Mathf.Clamp(y + 1, 0, TerrainConfig.Settings.worldSize.y - 1);
 
-                            lightLevel = Mathf.Max(_lightValues[nx1, y], _lightValues[nx2, y], 
-                                                   _lightValues[x, ny1], _lightValues[x, ny2]);
+                            lightLevel = Mathf.Max(_lightValues[x, y], 
+                                _lightValues[nx1, y], _lightValues[nx2, y], 
+                                _lightValues[x, ny1], _lightValues[x, ny2]);
 
-                            if (GetTile(x, y, 1) is null)
-                                lightLevel -= .75f;
-                            else _lightValues[x, y] = lightLevel;
+                            if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= 2;
+                            else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= 2;
+                            else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= 2;
+                            else lightLevel -= 2f;
                         }
 
                         _lightValues[x, y] = lightLevel;
@@ -99,16 +116,18 @@ namespace TerrariaClone.Runtime.Terrain
                 }
             }
             
-            for (var x = 0; x < Settings.worldSize.x; x++)
+            //add data from array to the lightmap
+            for (var x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
             {
-                for (var y = 0; y < Settings.worldSize.y; y++)
+                for (var y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
                 {
-                    lightMap.SetPixel(x, y, new Color(0, 0, 0, _lightValues[x, y]));
+                    lightMap.SetPixel(x, y, new Color(0,0,0, _lightValues[x, y] / 15));
                 }
             }
             
+            //apply and set texture
             lightMap.Apply();
-            lightShader.SetTexture(LightMap, lightMap);
+            lightShader.SetTexture("_LightMap", lightMap);
         }
     }
 }
