@@ -12,6 +12,8 @@ namespace TerrariaClone.Runtime.Terrain
         private Tilemap[] _tilemaps;
         private Lighting _lighting;
 
+        public int updateTiles;
+
         private void Awake() => Init();
         private void Init()
         {
@@ -24,8 +26,8 @@ namespace TerrariaClone.Runtime.Terrain
             Tilemaps = _tilemaps;
             WorldData.Init(Settings.worldSize);
 
-            //_lighting = GetComponent<Lighting>();
-            //_lighting.Init();
+            _lighting = GetComponent<Lighting>();
+            _lighting.Init();
             
             foreach (var ore in Settings.ores)
             {
@@ -34,7 +36,7 @@ namespace TerrariaClone.Runtime.Terrain
             }
 
             GenerateTerrain();
-            //_lighting.IUpdate(4);
+            _lighting.UpdateLighting(4, Settings.worldSize.x, Settings.worldSize.y);
         }
 
         private void GenerateTerrain()
@@ -149,7 +151,7 @@ namespace TerrariaClone.Runtime.Terrain
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
 
-            //if (updateLighting) _lighting.IUpdate(3);
+            if (updateLighting) _lighting.UpdateLighting(updateTiles, x, y);
         }
 
         public void RemoveTile(int x, int y, int z, bool updateLighting = false)
@@ -166,7 +168,7 @@ namespace TerrariaClone.Runtime.Terrain
             //Remove tile from world and array
             SetTile(null, x, y, z);
 
-            //if (updateLighting) _lighting.IUpdate(3);
+            if (updateLighting) _lighting.UpdateLighting(updateTiles, x, y);
         }
 
         public bool CanPlaceHere(int x, int y)
@@ -189,6 +191,6 @@ namespace TerrariaClone.Runtime.Terrain
         }
 
         public bool IsIlluminate(int x, int y) 
-            => GetTile(x, y, 1) is TorchTile;
+            => GetTile(x, y, 0) is TorchTile;
     }
 }

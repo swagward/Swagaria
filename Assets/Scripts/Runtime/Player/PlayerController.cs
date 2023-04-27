@@ -67,8 +67,8 @@ namespace TerrariaClone.Runtime.Player
             mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
 
-            if (Input.GetMouseButton(1))
-                terrain.PlaceTile(TileAtlas.Stone, mousePos.x, mousePos.y, false, true);
+            if (Input.GetMouseButtonDown(1))
+                terrain.PlaceTile(TileAtlas.Torch, mousePos.x, mousePos.y, false, true);
             else if (Input.GetMouseButton(0))
                 terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);
             //itemToUse.Use(this);
