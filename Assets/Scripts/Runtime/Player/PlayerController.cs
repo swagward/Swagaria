@@ -28,6 +28,7 @@ namespace TerrariaClone.Runtime.Player
         private bool _facingRight = true;
         private float _horizontal;
         private Camera _mainCam;
+        private Animator _anim;
 
         private void Awake()
         {
@@ -39,7 +40,11 @@ namespace TerrariaClone.Runtime.Player
             
             _mainCam = Camera.main;
             _rb2 = GetComponent<Rigidbody2D>();
+
+            _anim = GetComponent<Animator>();
         }
+
+
 
         public void Spawn(int x, int y)
         {
@@ -51,26 +56,50 @@ namespace TerrariaClone.Runtime.Player
 
         private void Update()
         {
-            if (!GameManager.Initialized) return;
+            Debug.Log(IsGrounded());
+
+
+            //if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
-            
+
             //Jumping
             if (Input.GetKeyDown(JumpKey) && IsGrounded())
                 _rb2.velocity = new Vector2(_rb2.velocity.x, jumpForce);
+               
             if (Input.GetKeyUp(JumpKey) && _rb2.velocity.y > 0)
                 _rb2.velocity = new Vector2(_rb2.velocity.x, _rb2.velocity.y * .5f);
+                
+            
+
+            //Flip player sprite
+            if (_facingRight && _horizontal < 0 || !_facingRight && _horizontal > 0)
+                Flip();
 
             //Convert mouse position to screen space to interact with tiles
             var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
 
-            if (Input.GetMouseButtonDown(1))
+            //Animations
+            if (Mathf.Abs(_horizontal) > .1f && IsGrounded()) //if moving and on ground
+                _anim.SetBool("Move", true);
+            else if ((Mathf.Abs(_horizontal) > .1f && !IsGrounded()) || !IsGrounded()) //if moving and in air OR just in air
+                _anim.SetBool("Jump", true);
+            else
+            {
+                _anim.SetBool("Move", false);
+                _anim.SetBool("Jump", false);
+            }
+
+            //World manipulation
+            //Remove if statements once inventory added
+            /*if (Input.GetMouseButtonDown(1))
                 terrain.PlaceTile(TileAtlas.Torch, mousePos.x, mousePos.y, false, true);
             else if (Input.GetMouseButton(0))
-                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);
+                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);*/
+
             //itemToUse.Use(this);
 
         }
@@ -87,7 +116,7 @@ namespace TerrariaClone.Runtime.Player
         {
             _facingRight = !_facingRight;
             var playerScale = transform.localScale;
-            playerScale *= -1;
+            playerScale.x *= -1;
             transform.localScale = playerScale;
         }
     }

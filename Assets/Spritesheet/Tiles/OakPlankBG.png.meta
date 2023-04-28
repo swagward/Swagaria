@@ -1437,7 +1437,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OakPlankBG_59: 1581702484
+      OakPlankBG_44: 788086347
       OakPlankBG_47: 764056380
       OakPlankBG_19: 412111890
       OakPlankBG_55: 1073515887
@@ -1493,10 +1493,10 @@ TextureImporter:
       OakPlankBG_41: -1698513619
       OakPlankBG_46: -56604560
       OakPlankBG_30: 1591904368
-      OakPlankBG_44: 788086347
+      OakPlankBG_59: 1581702484
       OakPlankBG_14: -283571746
-      OakPlankBG_45: -919008083
       OakPlankBG_49: -1528754454
+      OakPlankBG_45: -919008083
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

@@ -61,9 +61,9 @@ namespace TerrariaClone.Runtime.Terrain
                 var stopY = rootY + editRadius;
                 
                 var lightLevel = sunlightBrightness;
-                for (var x = rootX; x < stopX; x++)
+                for (var x = rootX - editRadius; x < stopX; x++)
                 {
-                    for (var y = stopY - 2; y >= rootY; y--)
+                    for (var y = stopY - 2; y >= rootY + editRadius; y--)
                     {
                         //check if this block is a torch OR exposes background
                         if (_terrain.IsIlluminate(x, y) ||
