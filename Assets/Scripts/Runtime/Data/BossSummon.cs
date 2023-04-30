@@ -1,4 +1,5 @@
-﻿using TerrariaClone.Runtime.Player;
+﻿using TerrariaClone.Runtime.Boss;
+using TerrariaClone.Runtime.Player;
 using UnityEngine;
 
 namespace TerrariaClone.Runtime.Data
@@ -17,6 +18,7 @@ namespace TerrariaClone.Runtime.Data
                 //have boss come from opposite players direction
                 
                 var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
+                newBoss.GetComponent<BossAI>().StartEvent();
             }
         }
     }

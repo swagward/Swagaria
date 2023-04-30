@@ -56,10 +56,10 @@ namespace TerrariaClone.Runtime.Player
 
         private void Update()
         {
-            Debug.Log(IsGrounded());
+            Debug.Log(GameManager.Initialized);
 
 
-            //if (!GameManager.Initialized) return;
+            if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
             _horizontal = Input.GetAxisRaw("Horizontal");
@@ -95,10 +95,13 @@ namespace TerrariaClone.Runtime.Player
 
             //World manipulation
             //Remove if statements once inventory added
-            /*if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(1))
                 terrain.PlaceTile(TileAtlas.Torch, mousePos.x, mousePos.y, false, true);
             else if (Input.GetMouseButton(0))
-                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);*/
+            {
+                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);
+                terrain.RemoveTile(mousePos.x, mousePos.y, 3, true);
+            }
 
             //itemToUse.Use(this);
 

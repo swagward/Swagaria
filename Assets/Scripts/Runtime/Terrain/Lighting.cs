@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using JetBrains.Annotations;
 using TerrariaClone.Runtime.Data;
+using TerrariaClone.Runtime.Player;
 using UnityEngine;
 
 namespace TerrariaClone.Runtime.Terrain
@@ -16,11 +19,9 @@ namespace TerrariaClone.Runtime.Terrain
         
         [Header("Testing")]
         public bool smoothLighting;
-        public bool update = false;
+        public bool update;
         public float groundAbsorption;
         public float wallAbsorption;
-        public float airAbsorption;
-        //public int stopX, stopY;
         public int editRadius;
 
         public void Init()
@@ -43,27 +44,22 @@ namespace TerrariaClone.Runtime.Terrain
         {
             lightMap.filterMode = smoothLighting ? FilterMode.Bilinear : FilterMode.Point;
             
-            // if(update)
-            //     UpdateLighting(2);
+            if(update)
+                RedrawLighting();
         }
 
 
 
-        public void UpdateLighting(int iterations, int rootX, int rootY)
+        private void UpdateLighting(int iterations, int rootX, int rootY, int stopX, int stopY)
         {
             //yield return new WaitForEndOfFrame();
             for (var i = 0; i < iterations; i++)
             {
-                rootX -= editRadius;
-                rootY -= editRadius;
 
-                var stopX = rootX + editRadius;
-                var stopY = rootY + editRadius;
-                
-                var lightLevel = sunlightBrightness;
-                for (var x = rootX - editRadius; x < stopX; x++)
+                for (var x = rootX; x < stopX; x++)
                 {
-                    for (var y = stopY - 2; y >= rootY + editRadius; y--)
+                    var lightLevel = sunlightBrightness;
+                    for (var y = stopY - 2; y >= rootY; y--)
                     {
                         //check if this block is a torch OR exposes background
                         if (_terrain.IsIlluminate(x, y) ||
@@ -83,7 +79,7 @@ namespace TerrariaClone.Runtime.Terrain
 
                             if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= groundAbsorption;
                             else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= wallAbsorption;
-                            else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption;
+                            //else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption;
                             // else lightLevel -= 1;
                         }
 
@@ -92,8 +88,9 @@ namespace TerrariaClone.Runtime.Terrain
                 }
                 
                 //reverse calculation to remove artefacts
-                for (var x = stopX - 2; x >= rootX; x--)
+                for (var x = stopX - 1; x > rootX; x--)
                 {
+                    var lightLevel = sunlightBrightness;
                     for (var y = rootY; y < stopY; y++)
                     {
                         //check if this block is a torch OR exposes background
@@ -114,7 +111,7 @@ namespace TerrariaClone.Runtime.Terrain
 
                             if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= groundAbsorption; //ground
                             else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= wallAbsorption; //wall
-                            else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption; //air
+                            //else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption; //air
                             // else lightLevel -= 1;
                         }
 
@@ -123,14 +120,26 @@ namespace TerrariaClone.Runtime.Terrain
                 }
                 
                 //add data from array to the lightmap
-                for (var x = 0; x < TerrainConfig.Settings.worldSize.x; x++)
-                    for (var y = 0; y < TerrainConfig.Settings.worldSize.y; y++)
+                for (var x = rootX; x < stopX; x++)
+                    for (var y = rootY; y < stopY; y++)
                         lightMap.SetPixel(x, y, new Color(0,0,0, _lightValues[x, y] / 15));
             }
             
             //apply and set texture
             lightMap.Apply();
             lightShader.SetTexture("_LightMap", lightMap);
+        }
+
+        public void RedrawLighting(int x = -1, int y = -1)
+        {
+            if(x is -1 && y is -1)
+                UpdateLighting(4, 0, 0, TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
+            else 
+                UpdateLighting(4, 
+                    Mathf.Clamp(x - editRadius, 0, TerrainConfig.Settings.worldSize.x),
+                    Mathf.Clamp(y - editRadius, 0, TerrainConfig.Settings.worldSize.y),
+                    Mathf.Clamp(x + editRadius, 0, TerrainConfig.Settings.worldSize.x),
+                    Mathf.Clamp(y + editRadius, 0, TerrainConfig.Settings.worldSize.y));
         }
     }
 }

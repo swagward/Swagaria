@@ -1,40 +1,22 @@
 using System;
 using TerrariaClone.Runtime.Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace TerrariaClone.Runtime.Boss
 {
     public class BossAI : MonoBehaviour
     {
         public BossStates states;
-        
-        private void Start()
+
+        public void StartEvent()
         {
             GameManager.BossActive = true;
         }
 
         private void Update()
         {
-            switch (states)
-            {
-                case BossStates.Chasing:
-                {
-                    //boss follow player
-                    break;
-                }
-                case BossStates.Idling:
-                {
-                    //get away from player
-                    break;
-                }
-                case BossStates.Attacking:
-                {
-                    
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            
         }
 
         private void Death()
@@ -46,8 +28,6 @@ namespace TerrariaClone.Runtime.Boss
 
     public enum BossStates
     {
-        Chasing,
-        Attacking,
-        Idling
+
     }
 }
