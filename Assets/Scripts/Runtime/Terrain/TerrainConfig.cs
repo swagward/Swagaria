@@ -28,7 +28,11 @@ namespace TerrariaClone.Runtime.Terrain
                 
              //Spawn player
              if (x == Settings.worldSize.x / 2)
+             {
+                 // if (WorldData.GetTile(x, y - 1) is not null)
                  Settings.Player.Spawn(x, (int)height);
+             }
+
             
             //Primary cave gen
             var noiseValue = 0f;

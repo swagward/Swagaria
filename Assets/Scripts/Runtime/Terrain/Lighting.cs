@@ -20,8 +20,8 @@ namespace TerrariaClone.Runtime.Terrain
         [Header("Testing")]
         public bool smoothLighting;
         public bool update;
-        public float groundAbsorption;
-        public float wallAbsorption;
+        [Min(.1f)] public float groundAbsorption;
+        [Min(.1f)] public float wallAbsorption;
         public int editRadius;
 
         public void Init()
@@ -133,9 +133,9 @@ namespace TerrariaClone.Runtime.Terrain
         public void RedrawLighting(int x = -1, int y = -1)
         {
             if(x is -1 && y is -1)
-                UpdateLighting(4, 0, 0, TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
+                UpdateLighting(6, 0, 0, TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
             else 
-                UpdateLighting(4, 
+                UpdateLighting(6, 
                     Mathf.Clamp(x - editRadius, 0, TerrainConfig.Settings.worldSize.x),
                     Mathf.Clamp(y - editRadius, 0, TerrainConfig.Settings.worldSize.y),
                     Mathf.Clamp(x + editRadius, 0, TerrainConfig.Settings.worldSize.x),

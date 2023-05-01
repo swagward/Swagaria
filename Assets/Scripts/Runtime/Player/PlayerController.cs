@@ -83,15 +83,22 @@ namespace TerrariaClone.Runtime.Player
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
 
             //Animations
-            if (Mathf.Abs(_horizontal) > .1f && IsGrounded()) //if moving and on ground
-                _anim.SetBool("Move", true);
-            else if ((Mathf.Abs(_horizontal) > .1f && !IsGrounded()) || !IsGrounded()) //if moving and in air OR just in air
-                _anim.SetBool("Jump", true);
-            else
-            {
-                _anim.SetBool("Move", false);
-                _anim.SetBool("Jump", false);
-            }
+            // if (Mathf.Abs(_horizontal) > .1f && IsGrounded()) //if moving and on ground
+            //     _anim.SetBool("Move", true);
+            // else if ((Mathf.Abs(_horizontal) > .1f && !IsGrounded()) || !IsGrounded()) //if moving and in air OR just in air
+            //     _anim.SetBool("Jump", true);
+            // else
+            // {
+            //     _anim.SetBool("Move", false);
+            //     _anim.SetBool("Jump", false);
+            // }
+            
+            if(Mathf.Abs(_horizontal) > .1f && IsGrounded())
+                _anim.SetTrigger("Walking");
+            else if (!IsGrounded())
+                _anim.SetTrigger("Jumping");
+            else if (Mathf.Abs(_horizontal) == 0)
+                _anim.SetTrigger("Idling");
 
             //World manipulation
             //Remove if statements once inventory added
