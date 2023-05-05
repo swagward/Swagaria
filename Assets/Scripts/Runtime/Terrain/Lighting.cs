@@ -34,7 +34,7 @@ namespace TerrariaClone.Runtime.Terrain
             lightOverlay.localScale =
                 new Vector3(TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y, 1);
             lightOverlay.position = new Vector3(TerrainConfig.Settings.worldSize.x / 2,
-                TerrainConfig.Settings.worldSize.y / 2, -10);
+                TerrainConfig.Settings.worldSize.y / 2, 10);
             
             lightShader.SetTexture("_LightMap", lightMap);
 
