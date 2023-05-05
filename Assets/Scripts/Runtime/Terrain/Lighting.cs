@@ -55,10 +55,9 @@ namespace TerrariaClone.Runtime.Terrain
             //yield return new WaitForEndOfFrame();
             for (var i = 0; i < iterations; i++)
             {
-
+                var lightLevel = sunlightBrightness;
                 for (var x = rootX; x < stopX; x++)
                 {
-                    var lightLevel = sunlightBrightness;
                     for (var y = stopY - 2; y >= rootY; y--)
                     {
                         //check if this block is a torch OR exposes background
@@ -90,7 +89,6 @@ namespace TerrariaClone.Runtime.Terrain
                 //reverse calculation to remove artefacts
                 for (var x = stopX - 1; x > rootX; x--)
                 {
-                    var lightLevel = sunlightBrightness;
                     for (var y = rootY; y < stopY; y++)
                     {
                         //check if this block is a torch OR exposes background

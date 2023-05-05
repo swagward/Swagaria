@@ -27,8 +27,8 @@ namespace TerrariaClone.Runtime.Player
         //Misc
         private bool _facingRight = true;
         private float _horizontal;
-        private Camera _mainCam;
         private Animator _anim;
+        private Camera _mainCam;
 
         private void Awake()
         {
@@ -38,13 +38,9 @@ namespace TerrariaClone.Runtime.Player
                 Instance = this;
             else Destroy(gameObject);
             
-            _mainCam = Camera.main;
             _rb2 = GetComponent<Rigidbody2D>();
-
             _anim = GetComponent<Animator>();
         }
-
-
 
         public void Spawn(int x, int y)
         {
@@ -52,13 +48,16 @@ namespace TerrariaClone.Runtime.Player
             transform.position = new Vector2(x, y + 3);
 
             terrain = FindObjectOfType<TerrainGenerator>();
+            GameManager.ParallaxShowing = true;
+
+            _mainCam = Camera.main;
+            var playerCam = FindObjectOfType<CameraController>();
+            playerCam.SpawnCamera(x, y);
+
         }
 
         private void Update()
         {
-            Debug.Log(GameManager.Initialized);
-
-
             if (!GameManager.Initialized) return;
             if (PauseControl.IsPaused) return;
 
@@ -68,11 +67,9 @@ namespace TerrariaClone.Runtime.Player
             if (Input.GetKeyDown(JumpKey) && IsGrounded())
                 _rb2.velocity = new Vector2(_rb2.velocity.x, jumpForce);
                
-            if (Input.GetKeyUp(JumpKey) && _rb2.velocity.y > 0)
+            else if (Input.GetKeyUp(JumpKey) && _rb2.velocity.y > 0)
                 _rb2.velocity = new Vector2(_rb2.velocity.x, _rb2.velocity.y * .5f);
                 
-            
-
             //Flip player sprite
             if (_facingRight && _horizontal < 0 || !_facingRight && _horizontal > 0)
                 Flip();
@@ -81,23 +78,13 @@ namespace TerrariaClone.Runtime.Player
             var worldPos = (Vector2)_mainCam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.x = Mathf.RoundToInt(worldPos.x - .5f);
             mousePos.y = Mathf.RoundToInt(worldPos.y - .5f);
-
-            //Animations
-            // if (Mathf.Abs(_horizontal) > .1f && IsGrounded()) //if moving and on ground
-            //     _anim.SetBool("Move", true);
-            // else if ((Mathf.Abs(_horizontal) > .1f && !IsGrounded()) || !IsGrounded()) //if moving and in air OR just in air
-            //     _anim.SetBool("Jump", true);
-            // else
-            // {
-            //     _anim.SetBool("Move", false);
-            //     _anim.SetBool("Jump", false);
-            // }
             
+            //Set animations based on certain states
             if(Mathf.Abs(_horizontal) > .1f && IsGrounded())
                 _anim.SetTrigger("Walking");
             else if (!IsGrounded())
                 _anim.SetTrigger("Jumping");
-            else if (Mathf.Abs(_horizontal) == 0)
+            else if (Mathf.Abs(_horizontal) is 0)
                 _anim.SetTrigger("Idling");
 
             //World manipulation

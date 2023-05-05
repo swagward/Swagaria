@@ -7,19 +7,22 @@ namespace TerrariaClone.Runtime.Player
         private static GameManager Instance = null;
         public static bool Initialized { get; set; }
         public static bool BossActive { get; set; }
-        
-        private void Awake()
+        public static bool ParallaxShowing { get; set; } = false;
+
+        public GameObject parallax;
+
+        private void Start()
         {
             PauseControl.IsPaused = false;
             Time.timeScale = 1;
-            
-            //Debug.Log($"{PauseControl.IsPaused} : {Time.timeScale}.");
+
+            //ParallaxShowing = !ParallaxShowing;
+            parallax.SetActive(ParallaxShowing); 
             
             DontDestroyOnLoad(this);
-            
             if (Instance is null)
                 Instance = this;
-            else Destroy(gameObject);
+            else Destroy(this.gameObject);
         }
 
         // private void Update()
