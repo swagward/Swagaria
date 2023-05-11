@@ -11,15 +11,13 @@ namespace TerrariaClone.Runtime.Data
 
         public override void Use(PlayerController caller)
         {
-            if (!GameManager.BossActive)
-            {
-                //get direction player is facing
-                //spawn outside of cameras range
-                //have boss come from opposite players direction
+            if (GameManager.BossActive) return;
+            //get direction player is facing
+            //spawn outside of cameras range
+            //have boss come from opposite players direction
                 
-                var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
-                newBoss.GetComponent<BossAI>().StartEvent();
-            }
+            var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
+            newBoss.GetComponent<BossAI>().StartEvent();
         }
     }
 }

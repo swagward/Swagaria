@@ -58,7 +58,7 @@ namespace TerrariaClone.Runtime.Terrain
                 var lightLevel = sunlightBrightness;
                 for (var x = rootX; x < stopX; x++)
                 {
-                    for (var y = stopY - 2; y >= rootY; y--)
+                    for (var y = stopY - 2; y > rootY; y--)
                     {
                         //check if this block is a torch OR exposes background
                         if (_terrain.IsIlluminate(x, y) ||
@@ -128,6 +128,11 @@ namespace TerrariaClone.Runtime.Terrain
             lightShader.SetTexture("_LightMap", lightMap);
         }
 
+        /// <summary>
+        /// Updates lighting in a certain radius, fixes lag somehow lol
+        /// </summary>
+        /// <param name="x">Mouse position X</param>
+        /// <param name="y">Mouse position Y</param>
         public void RedrawLighting(int x = -1, int y = -1)
         {
             if(x is -1 && y is -1)

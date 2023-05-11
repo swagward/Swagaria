@@ -81,6 +81,8 @@ namespace TerrariaClone.Runtime.Data
             // Returns the first tile it gets on the specific x/y coordinate
             if (z is -1)
             {
+                //i dont understand this
+                //made when drunk
                 for (var i = 0; i < Tilemaps.Length; i++)
                     if (_worldData[x, y, i] is not null)
                         return _worldData[x, y, i].tile;

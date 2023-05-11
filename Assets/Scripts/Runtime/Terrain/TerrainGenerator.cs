@@ -39,6 +39,8 @@ namespace TerrariaClone.Runtime.Terrain
 
         private void GenerateTerrain()
         {
+            //WHAT DOES THIS FUCKING MEAN
+            //SO POORLY MADE HOW DOES THIS WORK
             for (var x = 0; x < Settings.worldSize.x; x++)
             {
                 var height = GetHeight(x);

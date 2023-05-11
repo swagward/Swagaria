@@ -8,8 +8,8 @@ namespace TerrariaClone.Runtime.Data
     {
         [Header("Universal Data")]
         [SerializeField] private new string name;
-        [SerializeField] private Sprite icon;
-        [SerializeField] private bool canStack;
+        public Sprite icon;
+        public bool canStack;
         [SerializeField] private bool removeOnUse; 
         [SerializeField] private AudioClip useSound;
 
@@ -21,8 +21,6 @@ namespace TerrariaClone.Runtime.Data
 
             //Do shit eventually that other classes can inherit from
             Debug.Log($"{name} was used");
-
-
         }
         
         public virtual ItemClass GetItem() { return this; }
