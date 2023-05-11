@@ -1,4 +1,5 @@
 ﻿using TerrariaClone.Runtime.Player;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,8 @@ namespace TerrariaClone.Runtime.Data
         public TileBase tile;
         public TileLayer tileLayer;
         public TileClass wallVariant;
+
+        public AnimatorController animatorController;
         
         [Header("Lighting")]
         public int lightStrength;
@@ -18,15 +21,22 @@ namespace TerrariaClone.Runtime.Data
 
         public override void Use(PlayerController caller)
         {
-            base.Use(caller);
-            if(caller.terrain.CanPlaceHere(caller.mousePos.x, caller.mousePos.y))
-                caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false, true);
+            if(Input.GetMouseButton(0))
+            {
+                if(caller.terrain.CanPlaceHere(caller.mousePos.x, caller.mousePos.y) && Vector2.Distance(caller.transform.position, caller.mousePos) <=
+                caller.reach && Vector2.Distance(caller.transform.position, caller.mousePos) > 1.5f) //Stop player from placing tiles inside their collider)
+                {
+                    base.Use(caller);
+                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false, true);
+                    Debug.Log("tile used");
+                }
+            }
         }
 
         public override TileClass GetTile() { return this; }
     }
 
-    public enum TileLayer : int
+    public enum TileLayer
     {
         Addon = 0,
         Ground = 1,

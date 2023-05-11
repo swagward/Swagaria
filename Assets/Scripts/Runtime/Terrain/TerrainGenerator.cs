@@ -173,6 +173,9 @@ namespace TerrariaClone.Runtime.Terrain
 
         public bool CanPlaceHere(int x, int y)
         {
+            //if tile at xy does exist 
+            if (GetTile(x, y, 1) is not null) return false;
+
             //check connected tiles nearby
             if (GetTile(x + 1, y, 1) is not null) return true;
             if (GetTile(x - 1, y, 1) is not null) return true;

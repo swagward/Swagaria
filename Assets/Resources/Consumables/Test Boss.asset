@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Test Boss
   m_EditorClassIdentifier: 
   name: Test Boss
-  icon: {fileID: 0}
-  canStack: 0
-  removeOnUse: 0
+  icon: {fileID: 21300000, guid: 9910caea51f054c49af45d29511a03d0, type: 3}
+  canStack: 1
+  removeOnUse: 1
   useSound: {fileID: 8300000, guid: e4c7d4ac4006cb14a8d2076580dd6e66, type: 3}
   consType: 3
   boss: {fileID: 210718100808079658, guid: 4e6b7a8c39141e4438cb31ec50f0e94c, type: 3}

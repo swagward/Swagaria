@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: OakWood
   m_EditorClassIdentifier: 
   name: Oak Wood
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: d54621fe852373047928c57502959671, type: 3}
   canStack: 1
   removeOnUse: 1
+  useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: eead0120827853541a9aed34a04dc31c, type: 2}
   tileLayer: 1
+  wallVariant: {fileID: 0}
+  lightStrength: 0

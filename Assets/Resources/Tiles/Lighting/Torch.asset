@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c9ae69da148db9cfc76ebad827377, type: 3}
   m_Name: Torch
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 0}
-  canStack: 0
-  removeOnUse: 0
+  name: Torch
+  icon: {fileID: 21300000, guid: 3c6777f3aa9b5004b9fcd54f363d28ce, type: 3}
+  canStack: 1
+  removeOnUse: 1
   useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
   tileLayer: 0

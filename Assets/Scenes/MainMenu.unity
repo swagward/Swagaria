@@ -1915,7 +1915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &464683490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9782,6 +9782,50 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5383738, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[1].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: e3b600eb5790dd74cbb985c7401b4eee, type: 2}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[2].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 49820174180cfd54493378ac8ec0ba1d, type: 2}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[3].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: ff350c890ff1b85469ed4b548a58e1df, type: 2}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[4].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f70830b9b5ec8774ba57447e59ffabfd, type: 2}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[1].<Quantity>k__BackingField
+      value: 583
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[2].<Quantity>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[3].<Quantity>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383740, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: startingItems.Array.data[4].<Quantity>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 190683028, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 915492954594132724, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -9825,6 +9869,10 @@ PrefabInstance:
     - target: {fileID: 915492954594132724, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225674614993803680, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: audioPlayer
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8902970002020660885, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
       propertyPath: m_Name

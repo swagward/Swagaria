@@ -19,8 +19,8 @@ namespace TerrariaClone.Runtime.Data
             caller.audioPlayer.clip = useSound;
             caller.audioPlayer.Play();
 
-            //Do shit eventually that other classes can inherit from
-            Debug.Log($"{name} was used");
+            if(removeOnUse)
+                caller.inventory.UseItem();
         }
         
         public virtual ItemClass GetItem() { return this; }

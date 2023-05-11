@@ -33,7 +33,7 @@ namespace TerrariaClone.Runtime.Player
         private SlotClass _tempSlot;
         private SlotClass _originalSlot;
 
-        private void Start()
+        public void Init()
         {
             _inventorySlots = new GameObject[inventorySlotsHolder.transform.childCount];
             _toolbarSlots = new GameObject[toolbarSlotsHolder.transform.childCount];
@@ -53,6 +53,9 @@ namespace TerrariaClone.Runtime.Player
                 _items[i] = startingItems[i];
 
             RefreshInventory();
+
+            toolbar.SetActive(true);
+            inventory.SetActive(false);
         }
         
         private void Update()
@@ -95,7 +98,7 @@ namespace TerrariaClone.Runtime.Player
             if (_movingItem)
             {
                 itemCursor.GetComponent<Image>().sprite = _movingSlot.Item.icon; //set sprite to current item sprite
-                itemCursor.GetComponentInChildren<TMP_Text>().text = _movingSlot.Item.name + " - " + _movingSlot.Quantity; //get name and item amount 
+                itemCursor.GetComponentInChildren<TMP_Text>().text = $"{_movingSlot.Item.name} - {_movingSlot.Quantity}"; //get name and item amount 
             }
 
             //manage toolbar item selection / scrolling
@@ -106,10 +109,16 @@ namespace TerrariaClone.Runtime.Player
 
             toolbarSelector.transform.position = _toolbarSlots[_currentSlotIndex].transform.position;
             SelectedItem = _items[_currentSlotIndex].Item;
-            currentItemName.transform.GetComponent<TMP_Text>().text = _items[_currentSlotIndex].Item.name;
+            if (SelectedItem != null)
+            {
+                currentItemName.transform.GetComponent<TMP_Text>().text = _items[_currentSlotIndex].Item.name;
+            }
+
+
+            
 
             // Show selected item in hand.
-            heldItem.GetComponent<SpriteRenderer>().sprite = SelectedItem?.icon is not null ? SelectedItem.icon : null;
+            // heldItem.GetComponent<SpriteRenderer>().sprite = SelectedItem?.icon is not null ? SelectedItem.icon : null;
         }
 
         private void RefreshInventory()

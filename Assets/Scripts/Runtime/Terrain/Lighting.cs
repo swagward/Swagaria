@@ -9,6 +9,7 @@ namespace TerrariaClone.Runtime.Terrain
 {
     public class Lighting : MonoBehaviour
     {
+        public LightingModes lighting;
         private TerrainGenerator _terrain;
         private float[,] _lightValues;
         public float sunlightBrightness = 15;
@@ -19,7 +20,6 @@ namespace TerrariaClone.Runtime.Terrain
         
         [Header("Testing")]
         public bool smoothLighting;
-        public bool update;
         [Min(.1f)] public float groundAbsorption;
         [Min(.1f)] public float wallAbsorption;
         public int editRadius;
@@ -42,23 +42,41 @@ namespace TerrariaClone.Runtime.Terrain
 
         private void Update()
         {
-            lightMap.filterMode = smoothLighting ? FilterMode.Bilinear : FilterMode.Point;
-            
-            if(update)
-                RedrawLighting();
+            if(smoothLighting)
+            {
+                switch(lighting)
+                {
+                    case LightingModes.Point:
+                        {
+                            lightMap.filterMode = FilterMode.Point;
+                            RedrawLighting();
+                            break;
+                        }
+                    case LightingModes.Bilinear:
+                        {
+                            lightMap.filterMode = FilterMode.Bilinear;
+                            RedrawLighting();
+                            break;
+                        }
+                    case LightingModes.Trilinear:
+                        {
+                            lightMap.filterMode = FilterMode.Trilinear;
+                            RedrawLighting();
+                            break;
+                        }
+                }
+            }
         }
-
-
 
         private void UpdateLighting(int iterations, int rootX, int rootY, int stopX, int stopY)
         {
             //yield return new WaitForEndOfFrame();
             for (var i = 0; i < iterations; i++)
             {
-                var lightLevel = sunlightBrightness;
                 for (var x = rootX; x < stopX; x++)
                 {
-                    for (var y = stopY - 2; y > rootY; y--)
+                    var lightLevel = sunlightBrightness;
+                    for (var y = stopY - 2; y >= rootY; y--)
                     {
                         //check if this block is a torch OR exposes background
                         if (_terrain.IsIlluminate(x, y) ||
@@ -67,10 +85,10 @@ namespace TerrariaClone.Runtime.Terrain
                         else
                         {
                             //else find the brightest neighbour
-                            var nx1 = Mathf.Clamp(x - 1, 0, TerrainConfig.Settings.worldSize.x - 1);
-                            var nx2 = Mathf.Clamp(x - 1, 0, TerrainConfig.Settings.worldSize.x - 1);
-                            var ny1 = Mathf.Clamp(y - 1, 0, TerrainConfig.Settings.worldSize.y - 1);
-                            var ny2 = Mathf.Clamp(y - 1, 0, TerrainConfig.Settings.worldSize.y - 1);
+                            var nx1 = Mathf.Clamp(x - 1, 0, stopX - 1);
+                            var nx2 = Mathf.Clamp(x - 1, 0, stopX - 1);
+                            var ny1 = Mathf.Clamp(y - 1, 0, stopY - 1);
+                            var ny2 = Mathf.Clamp(y - 1, 0, stopY - 1);
 
                             lightLevel = Mathf.Max(_lightValues[x, y], 
                                 _lightValues[nx1, y], _lightValues[nx2, y], 
@@ -79,7 +97,7 @@ namespace TerrariaClone.Runtime.Terrain
                             if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= groundAbsorption;
                             else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= wallAbsorption;
                             //else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption;
-                            // else lightLevel -= 1;
+                            else lightLevel -= 1;
                         }
 
                         _lightValues[x, y] = lightLevel;
@@ -89,6 +107,7 @@ namespace TerrariaClone.Runtime.Terrain
                 //reverse calculation to remove artefacts
                 for (var x = stopX - 1; x > rootX; x--)
                 {
+                    var lightLevel = sunlightBrightness;
                     for (var y = rootY; y < stopY; y++)
                     {
                         //check if this block is a torch OR exposes background
@@ -98,10 +117,10 @@ namespace TerrariaClone.Runtime.Terrain
                         else
                         {
                             //else find the brightest neighbour
-                            var nx1 = Mathf.Clamp(x + 1, 0, TerrainConfig.Settings.worldSize.x - 1);
-                            var nx2 = Mathf.Clamp(x + 1, 0, TerrainConfig.Settings.worldSize.x - 1);
-                            var ny1 = Mathf.Clamp(y + 1, 0, TerrainConfig.Settings.worldSize.y - 1);
-                            var ny2 = Mathf.Clamp(y + 1, 0, TerrainConfig.Settings.worldSize.y - 1);
+                            var nx1 = Mathf.Clamp(x + 1, 0, stopX - 1);
+                            var nx2 = Mathf.Clamp(x + 1, 0, stopX - 1);
+                            var ny1 = Mathf.Clamp(y + 1, 0, stopY - 1);
+                            var ny2 = Mathf.Clamp(y + 1, 0, stopY - 1);
 
                             lightLevel = Mathf.Max(_lightValues[x, y], 
                                 _lightValues[nx1, y], _lightValues[nx2, y], 
@@ -110,7 +129,7 @@ namespace TerrariaClone.Runtime.Terrain
                             if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= groundAbsorption; //ground
                             else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= wallAbsorption; //wall
                             //else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption; //air
-                            // else lightLevel -= 1;
+                            else lightLevel -= 1;
                         }
 
                         _lightValues[x, y] = lightLevel;
@@ -136,13 +155,20 @@ namespace TerrariaClone.Runtime.Terrain
         public void RedrawLighting(int x = -1, int y = -1)
         {
             if(x is -1 && y is -1)
-                UpdateLighting(6, 0, 0, TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
+                UpdateLighting(50, 0, 0, TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y);
             else 
-                UpdateLighting(6, 
-                    Mathf.Clamp(x - editRadius, 0, TerrainConfig.Settings.worldSize.x),
-                    Mathf.Clamp(y - editRadius, 0, TerrainConfig.Settings.worldSize.y),
-                    Mathf.Clamp(x + editRadius, 0, TerrainConfig.Settings.worldSize.x),
-                    Mathf.Clamp(y + editRadius, 0, TerrainConfig.Settings.worldSize.y));
+                UpdateLighting(25, 
+                    Mathf.Clamp(x - editRadius - 2, 0, TerrainConfig.Settings.worldSize.x),
+                    Mathf.Clamp(y - editRadius - 2, 0, TerrainConfig.Settings.worldSize.y),
+                    Mathf.Clamp(x + editRadius + 2, 0, TerrainConfig.Settings.worldSize.x),
+                    Mathf.Clamp(y + editRadius + 2, 0, TerrainConfig.Settings.worldSize.y));
         }
+    }
+
+    public enum LightingModes
+    {
+        Point,
+        Bilinear,
+        Trilinear
     }
 }

@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Dirt
   m_EditorClassIdentifier: 
   name: Dirt
-  icon: {fileID: 1077328410, guid: b97f132f9d945694283ff6279c64cee6, type: 3}
+  icon: {fileID: 21300000, guid: 704c31c3923b64a43b0a39864b723f8a, type: 3}
   canStack: 1
   removeOnUse: 1
+  useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
   tileLayer: 1
   wallVariant: {fileID: 11400000, guid: 24d23b5de4c08e94dad4a85b40a9388b, type: 2}
+  lightStrength: 0

@@ -8,12 +8,14 @@ namespace TerrariaClone.Runtime.Player
     {
         private static PlayerController Instance;
         public TerrainGenerator terrain;
+        public Inventory inventory;
         public ItemClass itemToUse;
 
         [Header("Player Control")]
         [SerializeField] private float speed;
         public Vector2Int mousePos;
         public int health;
+        public int reach
         public AudioSource audioPlayer;
 
         [Header("Jump/Ground Detection")] 
@@ -48,12 +50,15 @@ namespace TerrariaClone.Runtime.Player
             transform.position = new Vector2(x, y + 3);
 
             terrain = FindObjectOfType<TerrainGenerator>();
+            inventory = FindObjectOfType<Inventory>();
             GameManager.ParallaxShowing = true;
 
             _mainCam = Camera.main;
             var playerCam = FindObjectOfType<CameraController>();
             playerCam.SpawnCamera(x, y);
+            audioPlayer = playerCam.GetComponent<AudioSource>();
 
+            inventory.Init();
         }
 
         private void Update()
@@ -89,16 +94,8 @@ namespace TerrariaClone.Runtime.Player
 
             //World manipulation
             //Remove if statements once inventory added
-            if (Input.GetMouseButton(1))
-                terrain.PlaceTile(TileAtlas.Torch, mousePos.x, mousePos.y, false, true);
-            else if (Input.GetMouseButton(0))
-            {
-                terrain.RemoveTile(mousePos.x, mousePos.y, 1, true);
-                terrain.RemoveTile(mousePos.x, mousePos.y, 3, true);
-            }
-
-            //itemToUse.Use(this);
-
+            if (Input.GetMouseButton(0))
+                inventory.SelectedItem?.Use(this);
         }
 
         private void FixedUpdate()

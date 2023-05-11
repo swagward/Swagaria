@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8babb83901074f41b32252c880e59dd9, type: 3}
   m_Name: StoneBricks
   m_EditorClassIdentifier: 
-  name: 
+  name: Stone Bricks
   icon: {fileID: 0}
   canStack: 0
   removeOnUse: 0
+  useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: 0059fe4981ae8fb48af46623d55a5028, type: 2}
   tileLayer: 1
+  wallVariant: {fileID: 0}
+  lightStrength: 0
