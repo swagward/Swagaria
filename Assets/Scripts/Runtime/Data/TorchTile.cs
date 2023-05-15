@@ -1,5 +1,6 @@
 ﻿using TerrariaClone.Runtime.Player;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace TerrariaClone.Runtime.Data
 {
@@ -14,7 +15,7 @@ namespace TerrariaClone.Runtime.Data
                 {
                     //can place
                     base.Use(caller);
-                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false, true);
+                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, true);
                 }
             }
         }

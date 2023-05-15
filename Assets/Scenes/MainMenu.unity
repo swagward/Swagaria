@@ -3845,6 +3845,7 @@ GameObject:
   - component: {fileID: 827135423}
   - component: {fileID: 827135422}
   - component: {fileID: 827135421}
+  - component: {fileID: 827135424}
   m_Layer: 5
   m_Name: Eyes
   m_TagString: Untagged
@@ -3979,6 +3980,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827135419}
   m_CullTransparentMesh: 1
+--- !u!114 &827135424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827135419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 1232477246}
+  defColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &840100820
 GameObject:
   m_ObjectHideFlags: 0
@@ -4128,6 +4144,7 @@ GameObject:
   - component: {fileID: 848517716}
   - component: {fileID: 848517715}
   - component: {fileID: 848517714}
+  - component: {fileID: 848517717}
   m_Layer: 5
   m_Name: Torso
   m_TagString: Untagged
@@ -4287,6 +4304,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848517712}
   m_CullTransparentMesh: 1
+--- !u!114 &848517717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848517712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 155769575}
+  - {fileID: 183760253}
+  - {fileID: 2017981094}
+  defColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &856409321
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,6 +7127,7 @@ GameObject:
   - component: {fileID: 1349653538}
   - component: {fileID: 1349653537}
   - component: {fileID: 1349653536}
+  - component: {fileID: 1349653539}
   m_Layer: 5
   m_Name: Shoes
   m_TagString: Untagged
@@ -7227,6 +7262,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349653534}
   m_CullTransparentMesh: 1
+--- !u!114 &1349653539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349653534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 932061087}
+  defColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1374261753
 GameObject:
   m_ObjectHideFlags: 0
@@ -8141,6 +8191,7 @@ GameObject:
   - component: {fileID: 1587940609}
   - component: {fileID: 1587940608}
   - component: {fileID: 1587940607}
+  - component: {fileID: 1587940610}
   m_Layer: 5
   m_Name: Legs
   m_TagString: Untagged
@@ -8275,6 +8326,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587940605}
   m_CullTransparentMesh: 1
+--- !u!114 &1587940610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587940605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 757827659}
+  defColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1608661854
 GameObject:
   m_ObjectHideFlags: 0
@@ -8363,6 +8429,7 @@ GameObject:
   - component: {fileID: 1615537624}
   - component: {fileID: 1615537623}
   - component: {fileID: 1615537622}
+  - component: {fileID: 1615537625}
   m_Layer: 5
   m_Name: Skin
   m_TagString: Untagged
@@ -8521,6 +8588,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615537620}
   m_CullTransparentMesh: 1
+--- !u!114 &1615537625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615537620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 2107629776}
+  - {fileID: 2018538055}
+  - {fileID: 1325221458}
+  defColour: {r: 0.2, g: 0.20392157, b: 1, a: 0}
 --- !u!1 &1648931501
 GameObject:
   m_ObjectHideFlags: 0
@@ -9630,6 +9714,7 @@ GameObject:
   - component: {fileID: 2005201661}
   - component: {fileID: 2005201660}
   - component: {fileID: 2005201659}
+  - component: {fileID: 2005201662}
   m_Layer: 5
   m_Name: Hair
   m_TagString: Untagged
@@ -9764,6 +9849,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005201657}
   m_CullTransparentMesh: 1
+--- !u!114 &2005201662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005201657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68833234c894cb40bc2e3ce051267d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 111568903}
+  defColour: {r: 1, g: 0, b: 0, a: 0}
 --- !u!212 &2017981094 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6286723176352212273, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
@@ -9869,6 +9969,10 @@ PrefabInstance:
     - target: {fileID: 915492954594132724, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225674614993803680, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
+      propertyPath: reach
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2225674614993803680, guid: dbcb02829a32df440a5b4e84ca2f6998, type: 3}
       propertyPath: audioPlayer

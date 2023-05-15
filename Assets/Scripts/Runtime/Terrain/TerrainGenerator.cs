@@ -130,18 +130,18 @@ namespace TerrariaClone.Runtime.Terrain
             PlaceTile(TileAtlas.Grass, x, y + 1, true);
             while (i < length && GetTile(x, y - i, 1) is null)
             {
-                PlaceTile(TileAtlas.Vine, x, y - i, false);
+                PlaceTile(TileAtlas.Vine, x, y - i, true);
                 i++;
             }
         }
         
-        public void PlaceTile(TileClass tile, int x, int y, bool overrideTile, bool updateLighting = false)
+        public void PlaceTile(TileClass tile, int x, int y, bool updateLighting = false)
         {   //Constraints
             if (tile is null) return;
             if (x < 0 || x >= Settings.worldSize.x) return;
             if (y < 0 || y >= Settings.worldSize.y) return;
-            if (GetTile(x, y, (int)tile.tileLayer) is not null && overrideTile is false) return;
-            
+            if (GetTile(x, y, (int)tile.tileLayer) is not null) return;
+
             //Add tile to world and array
             SetTile(tile, x, y, (int)tile.tileLayer);
 
@@ -150,6 +150,7 @@ namespace TerrariaClone.Runtime.Terrain
                 var newLiquidTile = new LiquidTile(x, y, this, @liquidTile);
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
+
 
             if (updateLighting) _lighting.RedrawLighting(x, y);
         }
@@ -161,9 +162,9 @@ namespace TerrariaClone.Runtime.Terrain
             if (GetTile(x, y, z) is null) return;
             
             //Place wall backgrounds when possible
-            // var wallTile = GetTile(x, y, 1).wallVariant;
-            // if (wallTile is not null) 
-            //     PlaceTile(wallTile, x, y, false);
+            /*var wallTile = GetTile(x, y, 1).wallVariant;
+            if (wallTile is not null) 
+                PlaceTile(wallTile, x, y, true);*/
             
             //Remove tile from world and array
             SetTile(null, x, y, z);

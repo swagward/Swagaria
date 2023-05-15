@@ -16,5 +16,9 @@ MonoBehaviour:
   icon: {fileID: 0}
   canStack: 0
   removeOnUse: 0
+  useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: eff91f65a9736ec44935478b9c2750c5, type: 2}
   tileLayer: 0
+  wallVariant: {fileID: 0}
+  naturallyPlaced: 1
+  lightStrength: 0

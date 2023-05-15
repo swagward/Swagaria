@@ -12,8 +12,8 @@ namespace TerrariaClone.Runtime.Data
         public TileBase tile;
         public TileLayer tileLayer;
         public TileClass wallVariant;
+        public bool naturallyPlaced;
 
-        public AnimatorController animatorController;
         
         [Header("Lighting")]
         public int lightStrength;
@@ -27,7 +27,7 @@ namespace TerrariaClone.Runtime.Data
                 caller.reach && Vector2.Distance(caller.transform.position, caller.mousePos) > 1.5f) //Stop player from placing tiles inside their collider)
                 {
                     base.Use(caller);
-                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, false, true);
+                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, true);
                     Debug.Log("tile used");
                 }
             }

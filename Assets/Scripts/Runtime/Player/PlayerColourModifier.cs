@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ namespace TerrariaClone.Runtime.Player
         public Slider red;
         public Slider green;
         public Slider blue;
+
 
         public void OnEdit()
         {

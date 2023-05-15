@@ -60,8 +60,9 @@ namespace TerrariaClone.Runtime.Data
                     throw new Exception("Z position required when setting tile to null");
                 z = (int)tile.tileLayer;
             }
-            
+
             // Automatically add to tilemap and set the tile in specified tilemap
+            // tile = TileClass.NewInstance(tile, isNaturallyPlaced);
             _worldData[x, y, z] = new TileCell(tile, x, y, z);
             Tilemaps[z].SetTile(new Vector3Int(x, y, 0), tile is null ? null : tile.tile);
         }

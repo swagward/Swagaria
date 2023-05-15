@@ -15,7 +15,7 @@ namespace TerrariaClone.Runtime.Player
         [SerializeField] private float speed;
         public Vector2Int mousePos;
         public int health;
-        public int reach
+        public int reach;
         public AudioSource audioPlayer;
 
         [Header("Jump/Ground Detection")] 
