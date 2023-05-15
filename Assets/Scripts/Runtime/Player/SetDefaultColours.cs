@@ -8,12 +8,7 @@ namespace TerrariaClone.Runtime.Player
         public List<SpriteRenderer> parts;
         public Color defColour;
 
-        public void Start()
-        {
-            SetDefaultColour();
-        }
-
-        public void SetDefaultColour()
+        public void PlayerColorsInit()
         {
             foreach (var part in parts)
             {

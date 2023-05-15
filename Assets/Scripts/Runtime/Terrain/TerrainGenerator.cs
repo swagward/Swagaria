@@ -12,6 +12,7 @@ namespace TerrariaClone.Runtime.Terrain
         private Tilemap[] _tilemaps;
         private Lighting _lighting;
 
+
         private void Awake() => Init();
         private void Init()
         {
@@ -57,6 +58,7 @@ namespace TerrariaClone.Runtime.Terrain
                                 PlaceTile(TileAtlas.DirtWall, x, y, false);
                     }
 
+;
                     // All nature stuff managed here
                     if (GetTile(x, y, 1) == TileAtlas.Grass)
                     {

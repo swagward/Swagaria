@@ -47,7 +47,7 @@ namespace TerrariaClone.Runtime.Player
         public void Spawn(int x, int y)
         {
             GameManager.Initialized = true;
-            transform.position = new Vector2(x, y + 3);
+            transform.position = new Vector2(x + .5f, y + 3);
 
             terrain = FindObjectOfType<TerrainGenerator>();
             inventory = FindObjectOfType<Inventory>();

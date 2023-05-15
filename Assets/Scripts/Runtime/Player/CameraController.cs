@@ -19,7 +19,6 @@ namespace TerrariaClone.Runtime.Player
         {
             _mainCam.orthographicSize = Mathf.Clamp(_mainCam.orthographicSize, 20, 60);
             _mainCam.orthographicSize = orthoSize;
-            
         }
 
 
