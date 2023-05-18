@@ -9,6 +9,11 @@ namespace TerrariaClone.Runtime.Data
     {
         [Header("Boss Summon")]
         public GameObject boss;
+        public float moveSpeed;
+        public float rotateSpeed;
+
+        [Header("Mini Boss")]
+        public GameObject miniBossSummon;
 
         public override void Use(PlayerController caller)
         {
@@ -20,6 +25,7 @@ namespace TerrariaClone.Runtime.Data
             base.Use(caller);
                 
             var newBoss = Instantiate(boss, caller.transform.position, Quaternion.identity);
+            newBoss.GetComponent<BossAI>().thisBoss = this;
             newBoss.GetComponent<BossAI>().StartEvent();
         }
     }

@@ -19,3 +19,6 @@ MonoBehaviour:
   useSound: {fileID: 8300000, guid: e4c7d4ac4006cb14a8d2076580dd6e66, type: 3}
   consType: 3
   boss: {fileID: 210718100808079658, guid: 4e6b7a8c39141e4438cb31ec50f0e94c, type: 3}
+  moveSpeed: 6
+  rotateSpeed: 26.58
+  miniBossSummon: {fileID: 4895443421017303791, guid: b55e08eb1b97a3243800a1de43f05544, type: 3}
