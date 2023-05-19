@@ -8,6 +8,7 @@ namespace TerrariaClone.Runtime.Data
     public class BossSummon : ConsumableClass
     {
         [Header("Boss Summon")]
+        public int health;
         public GameObject boss;
         public float moveSpeed;
         public float rotateSpeed;

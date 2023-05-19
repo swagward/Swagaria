@@ -30,7 +30,7 @@ namespace TerrariaClone.Runtime.Boss
             var angle = Mathf.Atan2(player.transform.position.y - this.transform.position.y, 
                                     player.transform.position.x - this.transform.position.x) * Mathf.Rad2Deg;
             var targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, thisBoss.rotateSpeed * Time.deltaTime);
+            this.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, thisBoss.rotateSpeed * Time.deltaTime);
 
             var summonChance = Random.Range(-250, 250);
             if(summonChance is 0)

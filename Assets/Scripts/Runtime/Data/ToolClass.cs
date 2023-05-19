@@ -22,6 +22,6 @@ namespace TerrariaClone.Runtime.Data
         Axe = 0,
         Pickaxe = 1,
         Hammer = 3,
-        Bucket = 45
+        Bucket = 4
     }
 }
