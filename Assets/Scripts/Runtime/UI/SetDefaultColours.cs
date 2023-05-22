@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TerrariaClone.Runtime.Player
+namespace TerrariaClone.Runtime.UI
 {
     public class SetDefaultColours : MonoBehaviour
     {

@@ -11,8 +11,7 @@ namespace TerrariaClone.Runtime.Data
         public override void Use(PlayerController caller)
         {
             base.Use(caller);
-            caller.health += healthToAdd;
-            Debug.Log("test");
+            caller.health.AddHealth(healthToAdd);
         }
     }
 }

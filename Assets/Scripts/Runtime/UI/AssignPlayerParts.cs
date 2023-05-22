@@ -1,6 +1,7 @@
 using UnityEngine;
+using TerrariaClone.Runtime.Player;
 
-namespace TerrariaClone.Runtime.Player
+namespace TerrariaClone.Runtime.UI
 {
     public class AssignPlayerParts : MonoBehaviour
     {

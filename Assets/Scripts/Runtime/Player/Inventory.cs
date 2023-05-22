@@ -118,7 +118,7 @@ namespace TerrariaClone.Runtime.Player
             
 
             // Show selected item in hand.
-            // heldItem.GetComponent<SpriteRenderer>().sprite = SelectedItem?.icon is not null ? SelectedItem.icon : null;
+            heldItem.GetComponent<SpriteRenderer>().sprite = SelectedItem?.icon is not null ? SelectedItem.icon : null;
         }
 
         private void RefreshInventory()

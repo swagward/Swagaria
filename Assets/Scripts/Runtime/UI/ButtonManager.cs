@@ -1,8 +1,7 @@
-using TerrariaClone.Runtime.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace PixelWorlds.Runtime.UI
+namespace TerrariaClone.Runtime.UI
 {
     public class ButtonManager : MonoBehaviour
     {

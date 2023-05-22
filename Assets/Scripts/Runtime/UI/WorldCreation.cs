@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using TerrariaClone.Runtime.Terrain;
 
-namespace TerrariaClone.Runtime.Terrain
+namespace TerrariaClone.Runtime.UI
 {
     public class WorldCreation : MonoBehaviour
     {

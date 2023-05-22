@@ -35,12 +35,13 @@ namespace TerrariaClone.Runtime.Terrain
                 new Vector3(TerrainConfig.Settings.worldSize.x, TerrainConfig.Settings.worldSize.y, 1);
             lightOverlay.position = new Vector3(TerrainConfig.Settings.worldSize.x / 2,
                 TerrainConfig.Settings.worldSize.y / 2, 10);
-            
+
+            lightMap.filterMode = FilterMode.Point;
             lightShader.SetTexture("_LightMap", lightMap);
 
         }
 
-        private void Update()
+        /*private void Update()
         {
             if(smoothLighting)
             {
@@ -66,7 +67,7 @@ namespace TerrariaClone.Runtime.Terrain
                         }
                 }
             }
-        }
+        }*/
 
         private void UpdateLighting(int iterations, int rootX, int rootY, int stopX, int stopY)
         {

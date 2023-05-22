@@ -14,7 +14,7 @@ namespace TerrariaClone.Runtime.Player
         [Header("Player Control")]
         [SerializeField] private float speed;
         public Vector2Int mousePos;
-        public int health;
+        public HealthManager health;
         public int reach;
         public AudioSource audioPlayer;
 
@@ -68,6 +68,11 @@ namespace TerrariaClone.Runtime.Player
 
             _horizontal = Input.GetAxisRaw("Horizontal");
 
+            var playerTrans = this.transform.position;
+            playerTrans.x = Mathf.Clamp(this.transform.position.x, .5f, TerrainConfig.Settings.worldSize.x - .5f);
+            playerTrans.y = Mathf.Clamp(this.transform.position.y, 2, TerrainConfig.Settings.worldSize.y - 2);
+            this.transform.position = playerTrans;
+
             //Jumping
             if (Input.GetKeyDown(JumpKey) && IsGrounded())
                 _rb2.velocity = new Vector2(_rb2.velocity.x, jumpForce);
@@ -102,9 +107,7 @@ namespace TerrariaClone.Runtime.Player
             => _rb2.velocity = new Vector2(_horizontal * speed, _rb2.velocity.y);
 
         private bool IsGrounded()
-        {
-            return Physics2D.OverlapCircle(groundCheck.position, radius, groundLayer);
-        }
+            => Physics2D.OverlapCircle(groundCheck.position, radius, groundLayer);
         
         private void Flip()
         {

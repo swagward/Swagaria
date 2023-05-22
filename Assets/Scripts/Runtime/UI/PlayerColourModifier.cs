@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TerrariaClone.Runtime.Player
+namespace TerrariaClone.Runtime.UI
 {
     public class PlayerColourModifier : MonoBehaviour
     {
