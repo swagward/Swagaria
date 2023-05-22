@@ -10,8 +10,11 @@ namespace TerrariaClone.Runtime.Data
 
         public override void Use(PlayerController caller)
         {
-            base.Use(caller);
-            caller.health.AddHealth(healthToAdd);
+            if (Input.GetMouseButtonDown(0) && caller.health.currentHealth < caller.health.currentHealth - healthToAdd)
+            {
+                base.Use(caller);
+                caller.health.AddHealth(healthToAdd);
+            }
         }
     }
 }

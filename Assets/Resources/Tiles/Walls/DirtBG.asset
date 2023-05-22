@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DirtBG
   m_EditorClassIdentifier: 
   name: Dirt Background
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 72edbc5433a7c6e49a31cdee0066548b, type: 3}
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minHealth: 0
   defaultHealth: 100
-  currentMaxHealth: 17980
+  currentMaxHealth: 800
   defaultMaxHealth: 400

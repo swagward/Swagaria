@@ -7,6 +7,7 @@ namespace TerrariaClone.Runtime.Boss
     public class MiniBossSummon : MonoBehaviour
     {
         private GameObject player;
+        public int damage;
 
         private void Start()
         {
@@ -16,6 +17,15 @@ namespace TerrariaClone.Runtime.Boss
         private void Update()
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, 6 * Time.deltaTime);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                var player = collision.gameObject.GetComponent<HealthManager>();
+                player.TakeDamage(10);
+            }
         }
     }
 }

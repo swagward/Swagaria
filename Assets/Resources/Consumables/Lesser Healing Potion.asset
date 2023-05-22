@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Lesser Healing Potion
   m_EditorClassIdentifier: 
   name: Lesser Healing Potion
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0befa9c178dee0b4996a6bb158a3ef39, type: 3}
   canStack: 1
   removeOnUse: 1
-  consType: 2
   useSound: {fileID: 8300000, guid: e4c7d4ac4006cb14a8d2076580dd6e66, type: 3}
+  consType: 2
   healthToAdd: 50

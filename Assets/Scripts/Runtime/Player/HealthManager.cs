@@ -32,5 +32,10 @@ namespace TerrariaClone.Runtime.Player
         {
             health.currentMaxHealth += totalIncrease;
         }
+
+        public void TakeDamage(int remove)
+        {
+            currentHealth -= remove;
+        }
     }
 }
