@@ -21,4 +21,5 @@ MonoBehaviour:
   tileLayer: 1
   wallVariant: {fileID: 11400000, guid: 24d23b5de4c08e94dad4a85b40a9388b, type: 2}
   naturallyPlaced: 1
+  dropsItself: 1
   lightStrength: 0

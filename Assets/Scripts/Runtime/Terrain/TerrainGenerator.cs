@@ -1,4 +1,5 @@
 using TerrariaClone.Runtime.Data;
+using TerrariaClone.Runtime.Player;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static TerrariaClone.Runtime.Data.WorldData;
@@ -11,11 +12,12 @@ namespace TerrariaClone.Runtime.Terrain
     {
         private Tilemap[] _tilemaps;
         private Lighting _lighting;
-
+        private PlayerController _player;
 
         private void Awake() => Init();
         private void Init()
         {
+            _player = FindObjectOfType<PlayerController>();
             TerrainConfig.Init();
             
             _tilemaps = GetComponentsInChildren<Tilemap>();
@@ -41,7 +43,6 @@ namespace TerrariaClone.Runtime.Terrain
         private void GenerateTerrain()
         {
             //WHAT DOES THIS FUCKING MEAN
-            //SO POORLY MADE HOW DOES THIS WORK
             for (var x = 0; x < Settings.worldSize.x; x++)
             {
                 var height = GetHeight(x);
@@ -153,7 +154,6 @@ namespace TerrariaClone.Runtime.Terrain
                 StartCoroutine(newLiquidTile.GenerateLiquids());
             }
 
-
             if (updateLighting) _lighting.RedrawLighting(x, y);
         }
 
@@ -167,6 +167,11 @@ namespace TerrariaClone.Runtime.Terrain
             /*var wallTile = GetTile(x, y, 1).wallVariant;
             if (wallTile is not null) 
                 PlaceTile(wallTile, x, y, true);*/
+
+            //quickly log item and see if it can drop itself
+            //then add to inventory before breaking
+            if(GetTile(x, y, z).dropsItself)
+                _player.inventory.Add(GetTile(x, y, z), 1);
             
             //Remove tile from world and array
             SetTile(null, x, y, z);

@@ -28,7 +28,7 @@ namespace TerrariaClone.Runtime.Player
         [Header("Moving Data")] 
         [SerializeField] private GameObject itemCursor;
         [SerializeField] private GameObject heldItem;
-        private bool _movingItem;
+        [SerializeField] private bool _movingItem;
         private SlotClass _movingSlot;
         private SlotClass _tempSlot;
         private SlotClass _originalSlot;
@@ -107,7 +107,7 @@ namespace TerrariaClone.Runtime.Player
             else if (Input.GetAxis("Mouse ScrollWheel") > 0) //scrolling down
                 _currentSlotIndex = Mathf.Clamp(_currentSlotIndex - 1, 0, _toolbarSlots.Length - 1);
 
-            toolbarSelector.transform.position = _toolbarSlots[_currentSlotIndex].transform.position;
+            toolbarSelector.transform.position = new Vector3(_toolbarSlots[_currentSlotIndex].transform.position.x, _toolbarSlots[_currentSlotIndex].transform.position.y, 10);
             SelectedItem = _items[_currentSlotIndex].Item;
             if (SelectedItem != null)
             {
@@ -132,8 +132,8 @@ namespace TerrariaClone.Runtime.Player
                     _inventorySlots[i].transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
 
                     if (_items[i].Item.canStack)
-                        _inventorySlots[i].transform.GetChild(1).GetComponent<TMP_Text>().text = 
-                            _items[i].Quantity + "";
+                        _inventorySlots[i].transform.GetChild(1).GetComponent<TMP_Text>().text =
+                            $"{_items[i].Quantity}";
                     else _inventorySlots[i].transform.GetChild(1).GetComponent<TMP_Text>().text = "";
                 }
                 catch
@@ -183,7 +183,7 @@ namespace TerrariaClone.Runtime.Player
                 {
                     if (t.Item is null) //empty slot
                     {
-                        t.AddItem(_movingSlot.Item, _movingSlot.Quantity);
+                        t.AddItem(item, quantity);
                         break;
                     }
                 }

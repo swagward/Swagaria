@@ -32,7 +32,7 @@ namespace TerrariaClone.Runtime.Boss
             var targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
             this.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, thisBoss.rotateSpeed * Time.deltaTime);
 
-            var summonChance = Random.Range(-250, 250);
+            var summonChance = Random.Range(-300, 300);
             if(summonChance is 0)
             {
                 Instantiate(thisBoss.miniBossSummon, this.transform.position, targetRotation);

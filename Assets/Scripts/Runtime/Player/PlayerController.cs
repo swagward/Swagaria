@@ -1,3 +1,4 @@
+using System.Collections;
 using TerrariaClone.Runtime.Data;
 using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace TerrariaClone.Runtime.Player
         private static PlayerController Instance;
         public TerrainGenerator terrain;
         public Inventory inventory;
-        public ItemClass itemToUse;
+        //public ItemClass itemToUse;
 
         [Header("Player Control")]
         [SerializeField] private float speed;
@@ -17,6 +18,11 @@ namespace TerrariaClone.Runtime.Player
         public HealthManager health;
         public int reach;
         public AudioSource audioPlayer;
+
+        [Header("iFrames")]
+        public float iFrameDuration;
+        public int flashCount;
+        public SpriteRenderer[] playerSprite;
 
         [Header("Jump/Ground Detection")] 
         [SerializeField] private Transform groundCheck;
@@ -103,12 +109,6 @@ namespace TerrariaClone.Runtime.Player
                 inventory.SelectedItem?.Use(this);
         }
 
-        private void FixedUpdate()
-            => _rb2.velocity = new Vector2(_horizontal * speed, _rb2.velocity.y);
-
-        private bool IsGrounded()
-            => Physics2D.OverlapCircle(groundCheck.position, radius, groundLayer);
-        
         private void Flip()
         {
             _facingRight = !_facingRight;
@@ -116,5 +116,11 @@ namespace TerrariaClone.Runtime.Player
             playerScale.x *= -1;
             transform.localScale = playerScale;
         }
+
+        private void FixedUpdate()
+            => _rb2.velocity = new Vector2(_horizontal * speed, _rb2.velocity.y);
+
+        private bool IsGrounded()
+            => Physics2D.OverlapCircle(groundCheck.position, radius, groundLayer);
     }
 }

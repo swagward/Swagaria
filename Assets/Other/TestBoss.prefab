@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 125423984608024351}
   - component: {fileID: 8547102679334096682}
   - component: {fileID: 7545239421620354123}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,4 +100,3 @@ MonoBehaviour:
   states: 0
   thisBoss: {fileID: 0}
   goTo: {x: 0, y: 0}
-  miniBoss: {fileID: 4895443421017303791, guid: b55e08eb1b97a3243800a1de43f05544, type: 3}

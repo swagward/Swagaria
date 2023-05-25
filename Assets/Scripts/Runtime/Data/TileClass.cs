@@ -13,8 +13,8 @@ namespace TerrariaClone.Runtime.Data
         public TileLayer tileLayer;
         public TileClass wallVariant;
         public bool naturallyPlaced;
+        public bool dropsItself;
 
-        
         [Header("Lighting")]
         public int lightStrength;
         //removed bool because i can just check if lightStrength is > 0

@@ -24,7 +24,8 @@ namespace TerrariaClone.Runtime.Boss
             if(collision.gameObject.CompareTag("Player"))
             {
                 var player = collision.gameObject.GetComponent<HealthManager>();
-                player.TakeDamage(10);
+                player.TakeDamage(10, collision.GetComponent<PlayerController>());
+                Debug.Log(collision.GetComponent<PlayerController>());
             }
         }
     }

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stone Bricks
   icon: {fileID: 21300000, guid: c3cdbbe062848124bb817750bd16ab7d, type: 3}
-  canStack: 0
-  removeOnUse: 0
+  canStack: 1
+  removeOnUse: 1
   useSound: {fileID: 0}
   tile: {fileID: 11400000, guid: 0059fe4981ae8fb48af46623d55a5028, type: 2}
   tileLayer: 1
   wallVariant: {fileID: 0}
   naturallyPlaced: 0
+  dropsItself: 1
   lightStrength: 0
