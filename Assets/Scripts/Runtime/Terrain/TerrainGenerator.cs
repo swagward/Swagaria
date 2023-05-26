@@ -163,15 +163,24 @@ namespace TerrariaClone.Runtime.Terrain
             if (y < 0 || y >= Settings.worldSize.y) return;
             if (GetTile(x, y, z) is null) return;
             
-            //Place wall backgrounds when possible
-            /*var wallTile = GetTile(x, y, 1).wallVariant;
+            /*Place wall backgrounds when possible
+            var wallTile = GetTile(x, y, 1).wallVariant;
             if (wallTile is not null) 
                 PlaceTile(wallTile, x, y, true);*/
 
             //quickly log item and see if it can drop itself
             //then add to inventory before breaking
             if(GetTile(x, y, z).dropsItself)
-                _player.inventory.Add(GetTile(x, y, z), 1);
+            {
+                //add straight to inventory
+                //_player.inventory.Add(GetTile(x, y, z), 1);
+
+                //create seperate GaemeObject in world space
+                var newItemDrop = Instantiate(Settings.defaultDrop, new Vector2(x, y), Quaternion.identity);
+                newItemDrop.name = $"{GetTile(x, y, z).name}";
+                newItemDrop.GetComponent<SpriteRenderer>().sprite = GetTile(x, y, z).icon;
+                newItemDrop.GetComponent<ItemPickup>().collectable = GetTile(x, y, z);
+            }
             
             //Remove tile from world and array
             SetTile(null, x, y, z);

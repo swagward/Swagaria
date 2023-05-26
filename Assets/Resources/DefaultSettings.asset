@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b076279003483f83acced6b31551d4, type: 3}
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  Player: {fileID: 0}
+  defaultDrop: {fileID: 1723295173610419331, guid: 8df6bbeb63d59394ca800925b766e561, type: 3}
   worldSize: {x: 400, y: 250}
-  seed: 10331
+  seed: 31387
   seedRange: 32676
   caveFrequency: 0.08
   caveOctaves: 2

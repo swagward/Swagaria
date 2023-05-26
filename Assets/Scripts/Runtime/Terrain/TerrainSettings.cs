@@ -8,6 +8,7 @@ namespace TerrariaClone.Runtime.Terrain
     public class TerrainSettings : ScriptableObject
     {
         public PlayerController Player; //{ get; private set; }
+        public GameObject defaultDrop;
 
         public void InitPlayer()
             => Player = FindObjectOfType<PlayerController>(); 
