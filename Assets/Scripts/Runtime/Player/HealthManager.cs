@@ -9,34 +9,35 @@ namespace TerrariaClone.Runtime.Player
     public class HealthManager : MonoBehaviour
     {
         public int currentHealth;
-        public HealthInfo health;
         public TMP_Text textDisplay;
-        public Slider healthSlider;
+
+        [Header("Health Info")]
+        public int defaultHealth = 100;
+        public int currentMaxHealth = 100;
+        public int defaultMaxHealth = 400;
 
         private void Start()
         {
-            currentHealth = health.defaultHealth;
-        }
-
-        private void Update()
-        {
-            textDisplay.text = $"{currentHealth} / {health.currentMaxHealth}";
-            currentHealth = Mathf.Clamp(currentHealth, health.minHealth, health.currentMaxHealth);
+            UpdateHealth();
         }
 
         public void AddHealth(int healthToAdd)
         {
             currentHealth += healthToAdd;
+            UpdateHealth();
         }
 
         public void IncreaseTotalHealth(int totalIncrease)
         {
-            health.currentMaxHealth += totalIncrease;
+            currentMaxHealth += totalIncrease;
+            UpdateHealth();
         }
 
         public void TakeDamage(int remove, PlayerController player)
         {
             currentHealth -= remove;
+            UpdateHealth();
+
             StartCoroutine(iFrames(player));
         }
 
@@ -47,20 +48,33 @@ namespace TerrariaClone.Runtime.Player
         /// <returns></returns>
         private IEnumerator iFrames(PlayerController player)
         {
+            Debug.Log(player);
             //8 - player, 9 - enemy
             Physics.IgnoreLayerCollision(8, 9, true);
 
             for (int i = 0; i < player.flashCount; i++)
             {
-                player.playerSprite[i].color = new Color(1, 0, 0, .5f);
-                yield return new WaitForSeconds(player.iFrameDuration / (player.flashCount * 2));
-                player.playerSprite[i].color = Color.white;
-                yield return new WaitForSeconds(player.iFrameDuration / (player.flashCount * 2));
-                Debug.Log($"iterations {i}");
+                foreach (var playerSprite in player.playerSprite)
+                {
+                    var spriteMaterial = playerSprite.material;
 
+                    spriteMaterial.SetColor("_EmissionColor", new Color(1, 0, 0, .5f)); //red
+                    //spriteMaterial.color = new Color(1, 0, 0, .5f);
+                    yield return new WaitForSeconds(player.iFrameDuration / (player.flashCount * 2));
+                    spriteMaterial.SetColor("_EmissionColor", Color.white);
+                    //spriteMaterial.color = Color.white;
+                    yield return new WaitForSeconds(player.iFrameDuration / (player.flashCount * 2));
+                }
             }
             Physics.IgnoreLayerCollision(8, 9, false);
 
         }
+
+        private void UpdateHealth()
+        {
+            currentHealth = Mathf.Clamp(currentHealth, 0, currentMaxHealth);
+            textDisplay.text = $"{currentHealth} / {currentMaxHealth}";
+        }
+        //player.iFrameDuration / (player.flashCount * 2)
     }
 }

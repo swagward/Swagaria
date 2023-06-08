@@ -28,7 +28,6 @@ namespace TerrariaClone.Runtime.Data
                 {
                     base.Use(caller);
                     caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, true);
-                    Debug.Log("tile used");
                 }
             }
         }

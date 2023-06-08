@@ -12,8 +12,11 @@ namespace TerrariaClone.Runtime.Data
         {
             if(Input.GetMouseButtonDown(0))
             {
-                base.Use(caller);
-                caller.health.IncreaseTotalHealth(healthToAdd);
+                if(caller.health.currentMaxHealth <= caller.health.defaultMaxHealth - healthToAdd)
+                {
+                    base.Use(caller);
+                    caller.health.IncreaseTotalHealth(healthToAdd);
+                }
             }
         }
     }

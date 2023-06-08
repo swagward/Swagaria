@@ -40,6 +40,8 @@ namespace TerrariaClone.Runtime.Player
             //clamp the camera so it doesnt show outside boundaries
             position.x = Mathf.Clamp(position.x, 0 + (cameraZoom * orthoSize), 
                                 TerrainConfig.Settings.worldSize.x - (cameraZoom * orthoSize));
+            position.y = Mathf.Clamp(position.y, 0 + (cameraZoom * orthoSize),
+                                TerrainConfig.Settings.worldSize.y - (cameraZoom * orthoSize));
 
             this.transform.position = position;
         }

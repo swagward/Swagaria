@@ -11,7 +11,8 @@ namespace TerrariaClone.Runtime.Data
         {
             if(Input.GetMouseButton(0))
             {
-                if(CanPlaceTorch(caller.mousePos.x, caller.mousePos.y)) 
+                if(CanPlaceTorch(caller.mousePos.x, caller.mousePos.y) && caller.terrain.CanPlaceHere(caller.mousePos.x, caller.mousePos.y) && Vector2.Distance(caller.transform.position, caller.mousePos) <=
+                caller.reach && Vector2.Distance(caller.transform.position, caller.mousePos) > 1.5f)
                 {
                     //can place
                     base.Use(caller);
