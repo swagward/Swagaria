@@ -177,9 +177,9 @@ namespace TerrariaClone.Runtime.Terrain
 
                 //create seperate GaemeObject in world space
                 var newItemDrop = Instantiate(Settings.defaultDrop, new Vector2(x, y), Quaternion.identity);
-                newItemDrop.name = $"{GetTile(x, y, z).name}";
-                newItemDrop.GetComponent<SpriteRenderer>().sprite = GetTile(x, y, z).icon;
-                newItemDrop.GetComponent<ItemPickup>().collectable = GetTile(x, y, z);
+                newItemDrop.name = $"{GetTile(x, y, z).tileToDrop.name}";
+                newItemDrop.GetComponent<SpriteRenderer>().sprite = GetTile(x, y, z).tileToDrop.icon;
+                newItemDrop.GetComponent<ItemPickup>().collectable = GetTile(x, y, z).tileToDrop;
             }
             
             //Remove tile from world and array
@@ -210,7 +210,7 @@ namespace TerrariaClone.Runtime.Terrain
             return false;
         }
 
-        public bool IsIlluminate(int x, int y) 
+        public bool IsIlluminate(int x, int y)
             => GetTile(x, y, 0) is TorchTile;
     }
 }

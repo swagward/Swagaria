@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   name: Grass
-  icon: {fileID: 1890787023, guid: 957bcd825a9c88e4f8b2dd92b4f5fc3d, type: 3}
+  icon: {fileID: 0}
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}
@@ -22,4 +22,5 @@ MonoBehaviour:
   wallVariant: {fileID: 0}
   naturallyPlaced: 1
   dropsItself: 1
-  lightStrength: 0
+  tileToDrop: {fileID: 11400000, guid: 9973d7a450515fc4a8fdbf39eb712239, type: 2}
+  updateLighting: 1

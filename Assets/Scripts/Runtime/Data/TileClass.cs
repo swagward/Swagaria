@@ -1,5 +1,4 @@
 ﻿using TerrariaClone.Runtime.Player;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,9 +13,10 @@ namespace TerrariaClone.Runtime.Data
         public TileClass wallVariant;
         public bool naturallyPlaced;
         public bool dropsItself;
+        public TileClass tileToDrop;
 
-        [Header("Lighting")]
-        public int lightStrength;
+        [Header("Lighting")] 
+        public bool updateLighting;
         //removed bool because i can just check if lightStrength is > 0
 
         public override void Use(PlayerController caller)
@@ -27,7 +27,7 @@ namespace TerrariaClone.Runtime.Data
                 caller.reach && Vector2.Distance(caller.transform.position, caller.mousePos) > 1.5f) //Stop player from placing tiles inside their collider)
                 {
                     base.Use(caller);
-                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, true);
+                    caller.terrain.PlaceTile(GetTile(), caller.mousePos.x, caller.mousePos.y, updateLighting);
                 }
             }
         }

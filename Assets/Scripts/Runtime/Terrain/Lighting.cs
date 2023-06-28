@@ -97,7 +97,6 @@ namespace TerrariaClone.Runtime.Terrain
 
                             if (WorldData.GetTile(x, y, 1) is not null) lightLevel -= groundAbsorption;
                             else if (WorldData.GetTile(x, y, 3) is not null) lightLevel -= wallAbsorption;
-                            //else if (!Mathf.Approximately(lightLevel, sunlightBrightness)) lightLevel -= airAbsorption;
                             else lightLevel -= 1;
                         }
 

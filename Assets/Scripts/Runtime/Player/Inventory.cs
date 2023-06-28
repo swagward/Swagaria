@@ -7,6 +7,8 @@ namespace TerrariaClone.Runtime.Player
 {
     public class Inventory : MonoBehaviour
     {
+        [SerializeField] private GameObject healthUI;
+        
         [Header("Inventory")] 
         [SerializeField] private GameObject inventory;
         [SerializeField] private GameObject inventorySlotsHolder;
@@ -56,6 +58,7 @@ namespace TerrariaClone.Runtime.Player
 
             toolbar.SetActive(true);
             inventory.SetActive(false);
+            healthUI.SetActive(true);
         }
         
         private void Update()

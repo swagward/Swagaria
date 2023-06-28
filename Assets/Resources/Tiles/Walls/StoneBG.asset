@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StoneBG
   m_EditorClassIdentifier: 
   name: Stone Background
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7789d4fe412dae8439873032b0e9f866, type: 3}
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}
@@ -21,4 +21,6 @@ MonoBehaviour:
   tileLayer: 3
   wallVariant: {fileID: 0}
   naturallyPlaced: 1
-  lightStrength: 0
+  dropsItself: 0
+  tileToDrop: {fileID: 11400000}
+  updateLighting: 1

@@ -21,4 +21,6 @@ MonoBehaviour:
   tileLayer: 0
   wallVariant: {fileID: 0}
   naturallyPlaced: 1
+  dropsItself: 1
+  tileToDrop: {fileID: 11400000, guid: 188aa13c39d111b4e8b181fe22a66320, type: 2}
   lightStrength: 0

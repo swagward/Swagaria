@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   name: Stone
-  icon: {fileID: 1077328410, guid: b97f132f9d945694283ff6279c64cee6, type: 3}
+  icon: {fileID: 21300000, guid: c1bed99ce581b5747acc8cdc1792fd4d, type: 3}
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}
@@ -22,4 +22,5 @@ MonoBehaviour:
   wallVariant: {fileID: 11400000, guid: 70ee08a56b662e1428334ddda21fd9bf, type: 2}
   naturallyPlaced: 1
   dropsItself: 1
-  lightStrength: 0
+  tileToDrop: {fileID: 11400000}
+  updateLighting: 1

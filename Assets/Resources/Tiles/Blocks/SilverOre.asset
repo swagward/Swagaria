@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SilverOre
   m_EditorClassIdentifier: 
   name: Silver Ore
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 37f82a97e916d4a479982e04a58255cd, type: 3}
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}
@@ -22,4 +22,5 @@ MonoBehaviour:
   wallVariant: {fileID: 0}
   naturallyPlaced: 1
   dropsItself: 1
-  lightStrength: 0
+  tileToDrop: {fileID: 11400000}
+  updateLighting: 1

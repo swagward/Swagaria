@@ -22,4 +22,5 @@ MonoBehaviour:
   wallVariant: {fileID: 0}
   naturallyPlaced: 0
   dropsItself: 1
-  lightStrength: 0
+  tileToDrop: {fileID: 11400000}
+  updateLighting: 1

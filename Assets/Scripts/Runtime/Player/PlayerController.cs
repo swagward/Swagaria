@@ -2,6 +2,7 @@ using System.Collections;
 using TerrariaClone.Runtime.Data;
 using TerrariaClone.Runtime.Terrain;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TerrariaClone.Runtime.Player
 {
@@ -10,6 +11,7 @@ namespace TerrariaClone.Runtime.Player
         private static PlayerController Instance;
         public TerrainGenerator terrain;
         public Inventory inventory;
+        public Camera _mainCam;
         //public ItemClass itemToUse;
 
         [Header("Player Control")]
@@ -36,18 +38,28 @@ namespace TerrariaClone.Runtime.Player
         private bool _facingRight = true;
         private float _horizontal;
         private Animator _anim;
-        private Camera _mainCam;
 
         private void Awake()
         {
             DontDestroyOnLoad(this);
             
+            Debug.Log("awake");
             if (Instance is null)
                 Instance = this;
             else Destroy(gameObject);
             
             _rb2 = GetComponent<Rigidbody2D>();
             _anim = GetComponent<Animator>();
+            
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            _mainCam = Camera.main;
+            Debug.Log("lol");
+            if (scene.name == "MainMenu")
+                transform.position = new Vector3(0, 0, 0);
         }
 
         public void Spawn(int x, int y)

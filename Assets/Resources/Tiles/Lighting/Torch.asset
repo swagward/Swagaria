@@ -17,7 +17,10 @@ MonoBehaviour:
   canStack: 1
   removeOnUse: 1
   useSound: {fileID: 0}
-  tile: {fileID: 11400000, guid: 86048978bb2c10a4ba419ccd33c1ef80, type: 2}
+  tile: {fileID: 11400000, guid: df578c879f129a545bc3a82a92a958e8, type: 2}
   tileLayer: 0
   wallVariant: {fileID: 0}
-  lightStrength: 0
+  naturallyPlaced: 0
+  dropsItself: 1
+  tileToDrop: {fileID: 11400000}
+  updateLighting: 1

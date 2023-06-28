@@ -16,21 +16,15 @@ namespace TerrariaClone.Runtime.Data
             if (Vector2.Distance(caller.transform.position, caller.mousePos) <= caller.reach)
             {
                 caller.terrain.RemoveTile(caller.mousePos.x, caller.mousePos.y, (int)toolType, true);
-                if(toolType == ToolType.Axe && CheckIfTreeStump(caller.mousePos.x, caller.mousePos.y))
+                /*if(toolType == ToolType.Axe && CheckIfTreeStump(caller.mousePos.x, caller.mousePos.y))
                 {
                     for (int i = 0; i < TerrainConfig.Settings.maxTreeHeight; i++)
                     {
                         if (WorldData.GetTile(caller.mousePos.x, caller.mousePos.y + i) == TileAtlas.OakTree)
                             caller.terrain.RemoveTile(caller.mousePos.x, caller.mousePos.y + i, 0, false);
                     }
-                }
+                }*/
             }
-        }
-
-        //FORE AXE ONLY
-        public bool CheckIfTreeStump(int x, int y)
-        {
-            return WorldData.GetTile(x, y - 1, 0) is null && WorldData.GetTile(x, y, 0) == TileAtlas.OakTree;
         }
     }
 

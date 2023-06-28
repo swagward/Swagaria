@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   name: Water
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 38193b66043f26b41b4cb9f42379f8fb, type: 3}
   canStack: 0
   removeOnUse: 0
   useSound: {fileID: 0}
@@ -21,5 +21,7 @@ MonoBehaviour:
   tileLayer: 2
   wallVariant: {fileID: 0}
   naturallyPlaced: 1
+  dropsItself: 0
+  tileToDrop: {fileID: 0}
   lightStrength: 0
   flowSpeed: 0.1
