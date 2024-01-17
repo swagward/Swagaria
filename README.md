@@ -1,4 +1,4 @@
-# Pixel-Worlds
+# Swagaria
 
 A total remake of my original terraria clone. Including:
 - Upgraded inventory
